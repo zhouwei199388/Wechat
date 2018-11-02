@@ -1,3 +1,4 @@
 <!--client/pages/hotelIndex/hotelIndex.wxml-->
 <view class='root'>
+<image class='head_img' mode='widthFix' src='{{head_img_url}}'></image>
 </view>
