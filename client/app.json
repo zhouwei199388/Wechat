@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/hotelIndex/hotelIndex",
+    "pages/index/index",
+    "pages/chat/chat"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#333",
+    "navigationBarTitleText": "四季星酒店预订",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/hotelIndex/hotelIndex",
+      "text": "预订"
+    },
+    {
+      "pagePath": "pages/index/index",
+      "text": "我的"
+    }
+    ]
+  }
+
+
+}

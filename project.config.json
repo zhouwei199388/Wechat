@@ -1,0 +1,18 @@
+{
+	"client": "client/",
+	"svr": "server/",
+	"miniprogramRoot": "client/",
+	"qcloudRoot": "server/",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"nodeModules": true
+	},
+	"appid": "wxe7b86a74f9e96203",
+	"projectname": "HotelReservation",
+	"compileType": "miniprogram",
+	"condition": {}
+}
