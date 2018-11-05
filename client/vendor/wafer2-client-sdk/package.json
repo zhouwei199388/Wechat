@@ -43,5 +43,8 @@
     "type": "git",
     "url": "git+https://github.com/tencentyun/wafer2-client-sdk.git"
   },
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "dependencies": {
+    "qcloudsms_js": "^0.1.1"
+  }
 }

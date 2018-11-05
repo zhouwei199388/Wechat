@@ -8,6 +8,7 @@ var qcloud = require('../../vendor/wafer2-client-sdk/index');
 // 引入配置
 var config = require('../../config');
 
+
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
     title: text,

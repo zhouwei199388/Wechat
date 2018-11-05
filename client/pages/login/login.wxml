@@ -19,5 +19,5 @@
     </view>
   </view>
 
-   <button class="weui-btn login_btn_margin" bindtap='login' type="primary">登录</button>
+   <button class="weui-btn login_btn_margin" bindtap='doLogin' type="primary">登录</button>
 </view>
