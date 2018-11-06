@@ -30,10 +30,10 @@ var smsData = function(phoneNumber) {
 
 module.exports = async(ctx, next) => {
   var data = ctx.request.body
-
+  // ctx.body = data
   ctx.state.data = {
     phone: data.phone,
-    random: random
+    random: data.code
   }
   // ctx.state.data = await smsData(data.phone)
 }

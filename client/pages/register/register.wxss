@@ -1,0 +1,14 @@
+/* client/pages/login/login.wxss */
+
+.login_btn_margin{
+   margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px
+}
+
+
+.body_margin{
+  margin-top: 40%;
+  margin-left: 20px;
+  margin-right: 20px
+}
