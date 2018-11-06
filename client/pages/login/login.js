@@ -1,16 +1,17 @@
 // client/pages/login/login.js
+// 引入 QCloud 小程序增强 SDK
+var qcloud = require('../../vendor/wafer2-client-sdk/index');
 
 // 引入配置
 var config = require('../../config');
-// 引入 QCloud 小程序增强 SDK
-var qcloud = require('../../vendor/wafer2-client-sdk/index');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    smsUrl: "https://xgbqiuz6.qcloud.la/weapp/smsSend",
+    smsUrl: config.service.smsSend,
     phoneNumber: '',
     password: ''
   },
@@ -20,7 +21,7 @@ Page({
    * 绑定手机号输入框
    */
   bindPhoneInput: function (e) {
-    this.setdata({
+    this.setData({
       phoneNumber: e.detail.value
     })
   },
@@ -29,20 +30,62 @@ Page({
    * 绑定密码输入框
    */
   bindPwdInput: function (e) {
-    this.setdata({
+    this.setData({
       password: e.detail.value
     })
   },
 
-  doLogin() {
-    var data={
-      name:'zw',
-      pwd:123456
+  /**
+   * 手机号验证
+   */
+  checkMobile: function () {
+    var _phone = this.data.phoneNumber;
+    if (!(/^1[3|4|5|8][0-9]\d{8}$/.test(_phone))) {
+      return false;
+    }
+    return true
+  },
+
+  /**
+   * Toast弹窗
+   */
+
+  showToastText: function (title) {
+    wx.showToast({
+      title: title,
+      icon: '',
+      image: '',
+      duration: 1000,
+      mask: true,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+
+  /**
+   * 获取验证码
+   */
+  getSmsCode() {
+    var phone = this.data.phoneNumber
+    //验证是否为空
+    if (phone == "") {
+      this.showToastText("手机号不能为空")
+      return
+    }
+    //验证是否是规则的手机号
+    if (!this.checkMobile()) {
+      this.showToastText("手机号不规则")
+      return
+    }
+    var data = {
+      phone: phone
     }
     wx.request({
       url: this.data.smsUrl,
-      method: 'GET',
-      data: data,
+      method: 'POST',
+      data: JSON.stringify(data),
+      dataType: 'JSON',
       success: function (result) {
         console.log(result)
       },
@@ -52,63 +95,14 @@ Page({
         console.log(loginResponseError)
       },
     });
-
-    // var that = this
-    // if (that.data.phoneNumber == "") {
-    //   wx.showToast({
-    //     title: '账号不能为空',
-    //     duration: 1000,
-    //     mask: true,
-    //   })
-    // }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
 
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  },
+  doLogin() {
+     
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
   }
+
 })

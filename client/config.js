@@ -14,8 +14,12 @@ var config = {
     // 登录地址，用于建立会话
     loginUrl: `${host}/weapp/login`,
 
-    // 登录地址，用于建立会话
+    // 获取验证码
     smsSend: `${host}/weapp/smsSend`,
+
+
+    // 测试接口
+    demo: `${host}/weapp/demo`,
 
 
     // 测试的请求地址，用于测试会话
