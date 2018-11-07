@@ -12,8 +12,12 @@ Page({
    */
   data: {
     smsUrl: config.service.smsSend,
+    loginUrl: config.service.loginUrl,
     phoneNumber: '',
-    password: ''
+    password: '',
+    code: '',
+    inputCode: '',
+    codeTime: null
   },
 
 
@@ -32,6 +36,14 @@ Page({
   bindPwdInput: function (e) {
     this.setData({
       password: e.detail.value
+    })
+  },
+  /**
+   * 绑定验证码输入框
+   */
+  bindCodeInput: function (e) {
+    this.setData({
+      inputCode: e.detail.value
     })
   },
 
@@ -63,30 +75,69 @@ Page({
     })
   },
 
+  /**
+   * 获取随机数
+   */
   rand: function (number) {
     //用来存储产生的随机数
     var num = "";
     for (var i = 0; i < number; i++) {
       num += Math.floor(Math.random() * 10)
     }
+    this.setData({
+      code: num,
+      codeTime: new Date().getTime()
+    })
     return num;
   },
+
+  /**
+   * 验证手机号
+   */
+  detectionPhone: function () {
+    //验证是否为空
+    if (this.data.phoneNumber == "") {
+      this.showToastText("手机号不能为空")
+      return true
+    }
+    //验证是否是规则的手机号
+    if (!this.checkMobile()) {
+      this.showToastText("手机号不规则")
+      return true
+    }
+  },
+  /**
+   * 验证验证码
+   */
+  detectionCode: function () {
+    var _this = this.data
+    if (_this.codeTime == null) {
+      this.showToastText('请输入验证码')
+      return true
+    }
+    var nowTime = new Date().getTime()
+    var time = (nowTime - _this.codeTime) / 1000
+    var outTime = 3 * 60
+    console.log(time + "   " + outTime)
+    if (time > outTime) {
+      this.showToastText('验证码已超时')
+      return true
+    }
+    console.log('code is ' + _this.code + 'inputCode is ' + _this.inputCode)
+    if (_this.code != _this.inputCode) {
+      this.showToastText("验证码不匹配")
+      return true
+    }
+  },
+
   /**
    * 获取验证码
    */
   getSmsCode() {
     var phone = this.data.phoneNumber
-    //验证是否为空
-    if (phone == "") {
-      this.showToastText("手机号不能为空")
+    if (this.detectionPhone()) {
       return
     }
-    //验证是否是规则的手机号
-    if (!this.checkMobile()) {
-      this.showToastText("手机号不规则")
-      return
-    }
-    console.log(this.rand(4))
     var data = {
       phone: phone,
       code: this.rand(4)
@@ -108,9 +159,42 @@ Page({
   },
 
 
+  /**
+   * 登录
+   */
 
-  doLogin() {
+  doRegister() {
+    if (this.detectionPhone()) {
+      return
+    }
+    if (this.detectionCode()) {
+      return
+    }
 
+    if (this.data.password == "") {
+      this.showToastText("密码不能为空")
+      return
+    }
+
+    var data = {
+      phone: this.data.phoneNumber,
+      isWeixin: 0,
+      password: this.data.password
+    }
+    wx.request({
+      url: this.data.loginUrl,
+      method: 'POST',
+      data: JSON.stringify(data),
+      dataType: 'JSON',
+      success: function (result) {
+        console.log(result)
+      },
+
+      // 响应错误
+      fail: function (loginResponseError) {
+        console.log(loginResponseError)
+      },
+    })
 
 
   }

@@ -11,20 +11,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    smsUrl: config.service.smsSend,
+    // smsUrl: config.service.smsSend,
     loginUrl: config.service.loginUrl,
     phoneNumber: '',
     password: '',
-    code: '',
-    inputCode: '',
-    codeTime: new Date().getTime()
+    // code: '',
+    // inputCode: '',
+    // codeTime: null
   },
 
 
   /**
    * 绑定手机号输入框
    */
-  bindPhoneInput: function (e) {
+  bindPhoneInput: function(e) {
     this.setData({
       phoneNumber: e.detail.value
     })
@@ -33,24 +33,24 @@ Page({
   /**
    * 绑定密码输入框
    */
-  bindPwdInput: function (e) {
+  bindPwdInput: function(e) {
     this.setData({
       password: e.detail.value
     })
   },
-  /**
-  * 绑定验证码输入框
-  */
-  bindCodeInput: function (e) {
-    this.setData({
-      inputCode: e.detail.value
-    })
-  },
+  // /**
+  //  * 绑定验证码输入框
+  //  */
+  // bindCodeInput: function(e) {
+  //   this.setData({
+  //     inputCode: e.detail.value
+  //   })
+  // },
 
   /**
    * 手机号验证
    */
-  checkMobile: function () {
+  checkMobile: function() {
     var _phone = this.data.phoneNumber;
     if (!(/^1[3|4|5|8][0-9]\d{8}$/.test(_phone))) {
       return false;
@@ -62,39 +62,39 @@ Page({
    * Toast弹窗
    */
 
-  showToastText: function (title) {
+  showToastText: function(title) {
     wx.showToast({
       title: title,
       icon: '',
       image: '',
       duration: 1000,
       mask: true,
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
     })
   },
 
-/**
- * 获取随机数
- */
-  rand: function (number) {
-    //用来存储产生的随机数
-    var num = "";
-    for (var i = 0; i < number; i++) {
-      num += Math.floor(Math.random() * 10)
-    }
-    this.setData({
-      code: num,
-      codeTime: new Date().getTime()
-    })
-    return num;
-  },
+  // /**
+  //  * 获取随机数
+  //  */
+  // rand: function(number) {
+  //   //用来存储产生的随机数
+  //   var num = "";
+  //   for (var i = 0; i < number; i++) {
+  //     num += Math.floor(Math.random() * 10)
+  //   }
+  //   this.setData({
+  //     code: num,
+  //     codeTime: new Date().getTime()
+  //   })
+  //   return num;
+  // },
 
-/**
- * 验证手机号
- */
-  detectionPhone:function(){
+  /**
+   * 验证手机号
+   */
+  detectionPhone: function() {
     //验证是否为空
     if (this.data.phoneNumber == "") {
       this.showToastText("手机号不能为空")
@@ -103,87 +103,92 @@ Page({
     //验证是否是规则的手机号
     if (!this.checkMobile()) {
       this.showToastText("手机号不规则")
-     return true
-    }
-  },
-  /**
- * 验证验证码
- */
-  detectionCode: function () {
-    var _this = this.data
-    var nowTime = new Date().getTime()
-    var time = (nowTime - _this.codeTime)/1000
-    var outTime = 3*60
-    console.log(time+"   "+outTime)
-    if(time>outTime){
-      this.showToastText('验证码已超时')
-      return true
-    }
-    console.log('code is '+_this.code +'inputCode is '+_this.inputCode)
-    if (_this.code!=_this.inputCode) {
-      this.showToastText("验证码不匹配")
       return true
     }
   },
+  // /**
+  //  * 验证验证码
+  //  */
+  // detectionCode: function() {
+  //   var _this = this.data
+  //   if (_this.codeTime == null) {
+  //     this.showToastText('请输入验证码')
+  //     return true
+  //   }
+  //   var nowTime = new Date().getTime()
+  //   var time = (nowTime - _this.codeTime) / 1000
+  //   var outTime = 3 * 60
+  //   console.log(time + "   " + outTime)
+  //   if (time > outTime) {
+  //     this.showToastText('验证码已超时')
+  //     return true
+  //   }
+  //   console.log('code is ' + _this.code + 'inputCode is ' + _this.inputCode)
+  //   if (_this.code != _this.inputCode) {
+  //     this.showToastText("验证码不匹配")
+  //     return true
+  //   }
+  // },
+
+  // /**
+  //  * 获取验证码
+  //  */
+  // getSmsCode() {
+  //   var phone = this.data.phoneNumber
+  //   if (this.detectionPhone()) {
+  //     return
+  //   }
+  //   var data = {
+  //     phone: phone,
+  //     code: this.rand(4)
+  //   }
+  //   wx.request({
+  //     url: this.data.smsUrl,
+  //     method: 'POST',
+  //     data: JSON.stringify(data),
+  //     dataType: 'JSON',
+  //     success: function(result) {
+  //       console.log(result)
+  //     },
+
+  //     // 响应错误
+  //     fail: function(loginResponseError) {
+  //       console.log(loginResponseError)
+  //     },
+  //   });
+  // },
+
 
   /**
-   * 获取验证码
+   * 登录
    */
-  getSmsCode() {
-    var phone = this.data.phoneNumber
-    if(this.detectionPhone()){
-      return
-    }
-    var data = {
-      phone: phone,
-      code: this.rand(4)
-    }
-    wx.request({
-      url: this.data.smsUrl,
-      method: 'POST',
-      data: JSON.stringify(data),
-      dataType: 'JSON',
-      success: function (result) {
-        console.log(result)
-      },
-
-      // 响应错误
-      fail: function (loginResponseError) {
-        console.log(loginResponseError)
-      },
-    });
-  },
-
-
 
   doLogin() {
-    if(this.detectionPhone()){
+    if (this.detectionPhone()) {
       return
     }
-    if(this.detectionCode()){
-      return
-    }
-    
-    if(this.data.password==""){
+
+    if (this.data.password == "") {
       this.showToastText("密码不能为空")
       return
     }
 
     var data = {
-      phone : this.data.phone,
-      password:this.data.password
+      phone: this.data.phoneNumber,
+      isWeixin:0,
+      password: this.data.password
     }
     wx.request({
       url: this.data.loginUrl,
       method: 'POST',
       data: JSON.stringify(data),
       dataType: 'JSON',
-      success: function (result) {
+      success: function(result) {
         console.log(result)
       },
 
       // 响应错误
-      fail: function (loginResponseError) {
+      fail: function(loginResponseError) {
         console.log(loginResponseError)
       },
     })

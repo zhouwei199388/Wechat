@@ -11,8 +11,9 @@ const controllers = require('../controllers')
 const { auth: { authorizationMiddleware, validationMiddleware } } = require('../qcloud')
 
 // --- 登录与授权 Demo --- //
-// 登录接口 /weapp/login
-router.get('/login', authorizationMiddleware, controllers.login)
+// 微信登录接口 /weapp/wxlogin
+router.get('/wxlogin', authorizationMiddleware, controllers.wxlogin)
+
 // 用户信息接口（可以用来验证登录态） /weapp/user
 router.get('/user', validationMiddleware, controllers.user)
 
@@ -32,6 +33,9 @@ router.get('/message', controllers.message.get)
 // POST 用来处理微信转发过来的客服消息
 router.post('/message', controllers.message.post)
 router.post('/demo',controllers.demo)
+
+// 登录接口 /weapp/wxlogin
+router.post('/login', controllers.login)
 
 router.post('/smsSend', controllers.smsSend)
 module.exports = router
