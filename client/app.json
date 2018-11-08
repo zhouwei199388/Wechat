@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/register/register",
+    "pages/login/login",
     "pages/hotelIndex/hotelIndex",
     "pages/index/index",
     "pages/chat/chat"
@@ -16,7 +16,7 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/login/login",
+        "pagePath": "pages/register/register",
         "text": "预订"
       },
       {

@@ -12,7 +12,7 @@ Page({
    */
   data: {
     smsUrl: config.service.smsSend,
-    loginUrl: config.service.loginUrl,
+    regsiterUrl: config.service.register,
     phoneNumber: '',
     password: '',
     code: '',
@@ -111,8 +111,12 @@ Page({
    */
   detectionCode: function () {
     var _this = this.data
-    if (_this.codeTime == null) {
+    if (_this.inputCode == "") {
       this.showToastText('请输入验证码')
+      return true
+    }
+    if(_this.codeTime ==null){
+      this.showToastText('请获取验证码')
       return true
     }
     var nowTime = new Date().getTime()
@@ -160,7 +164,7 @@ Page({
 
 
   /**
-   * 登录
+   * 注册
    */
 
   doRegister() {
@@ -181,8 +185,10 @@ Page({
       isWeixin: 0,
       password: this.data.password
     }
+
+    console.log(this.data.regsiterUrl)
     wx.request({
-      url: this.data.loginUrl,
+      url: this.data.regsiterUrl,
       method: 'POST',
       data: JSON.stringify(data),
       dataType: 'JSON',

@@ -37,5 +37,8 @@ router.post('/demo',controllers.demo)
 // 登录接口 /weapp/wxlogin
 router.post('/login', controllers.login)
 
+// 注册 /weapp/register
+router.post('/register', controllers.register)
+
 router.post('/smsSend', controllers.smsSend)
 module.exports = router

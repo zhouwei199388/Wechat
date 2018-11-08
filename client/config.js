@@ -13,6 +13,8 @@ var config = {
 
     // 登录地址，用于建立会话
     loginUrl: `${host}/weapp/login`,
+    // 注册
+    register: `${host}/weapp/register`,
 
     // 微信登录地址，用于建立会话
     wxloginUrl: `${host}/weapp/wxlogin`,
