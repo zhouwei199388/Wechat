@@ -1,11 +1,13 @@
 {
   "pages": [
+    "pages/hotelIndex/hotelIndex",
     "pages/register/register",
     "pages/login/login",
-    "pages/hotelIndex/hotelIndex",
     "pages/index/index",
-    "pages/chat/chat"
-    
+    "pages/chat/chat",
+    "pages/activity/activity",
+    "pages/my/userCenter",
+    "pages/hotelList/hotelList"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -16,12 +18,22 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/register/register",
-        "text": "预订"
+        "pagePath": "pages/hotelIndex/hotelIndex",
+        "text": "预订",
+        "iconPath": "image/icon_yuding.png",
+        "selectedIconPath": "image/icon_yuding.png"
       },
       {
-        "pagePath": "pages/index/index",
-        "text": "我的"
+        "pagePath": "pages/activity/activity",
+        "text": "活动",
+        "iconPath": "image/icon_activity.png",
+        "selectedIconPath": "image/icon_activity.png"
+      },
+      {
+        "pagePath": "pages/my/userCenter",
+        "text": "我的",
+        "iconPath": "image/icon_my.png",
+        "selectedIconPath": "image/icon_my.png"
       }
     ]
   }

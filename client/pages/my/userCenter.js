@@ -1,23 +1,29 @@
-// client/pages/hotelIndex/hotelIndex.js
+// client/pages/my/userCenter.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-         head_img_url:'../../image/img_head.jpg',
-    movies: [
-      { url: '../../image/img_head.jpg' },
-      { url: '../../image/img_head.jpg' },
-      { url: '../../image/img_head.jpg' },
-      { url: '../../image/img_head.jpg' }
-    ]  
-  },
-  
-  serch(){
-    wx.navigateTo({
-      url: '../hotelList/hotelList',
-    })
+       islogin:false,
+       moreService:[
+         {
+           serviceImg:'../../image/ic_user_defaut.png',
+           serviceText:"我的奖品",
+         },
+         {
+           serviceImg: '../../image/ic_user_defaut.png',
+           serviceText: "修改密码",
+         },
+         {
+           serviceImg: '../../image/ic_user_defaut.png',
+           serviceText: "留言反馈",
+         },
+         {
+           serviceImg: '../../image/ic_user_defaut.png',
+           serviceText: "会员升级",
+         }
+       ]
   },
 
   /**
@@ -25,6 +31,12 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  toLogin(){
+    wx.navigateTo({
+      url: '../register/register',
+    })
   },
 
   /**

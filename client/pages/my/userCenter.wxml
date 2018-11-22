@@ -1,0 +1,37 @@
+<!--client/pages/my/userCenter.wxml-->
+<view>
+  <view class='head_box'>
+    <view wx:if="{{islogin}}" class='service_item'>
+      <image class='head_img' src='../../image/ic_user_defaut.png'></image>
+      <text class='white_text'>昵称</text>
+    </view>
+    <button wx:if='{{!islogin}}' class='login' bindtap='toLogin'>登录/注册</button>
+  </view>
+
+  <view class='service_box'>
+    <view class='service_item'>
+      <image class='item_img' src='../../image/ic_user_defaut.png'></image>
+      <text class='itme_text'>订单</text>
+    </view>
+    <view class='service_item'>
+      <image class='item_img' src='../../image/ic_user_defaut.png'></image>
+      <text class='itme_text'>优惠券</text>
+    </view>
+    <view class='service_item'>
+      <image class='item_img' src='../../image/ic_user_defaut.png'></image>
+      <text class='itme_text'>积分</text>
+    </view>
+  </view>
+
+  <view class='more_box'>
+    <view>更多服务</view>
+    <view class='service_box'>
+      <view class='service_item' wx:for="{{moreService}}" wx:key="{{this}}">
+        <image class='item_img' src='{{item.serviceImg}}'></image>
+        <text class='itme_text'>{{item.serviceText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <button class='close_login'>退出登录</button>
+</view>

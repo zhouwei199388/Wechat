@@ -1,0 +1,50 @@
+/* client/pages/hotelList/hotelList.wxss */
+
+.title{
+  display: flex;
+  flex-direction: row;
+  background: white;
+  padding: 20rpx;
+  justify-content: space-around
+}
+.title left{
+  border-right-style: solid;
+  border-right-color: #b1b1b1;
+  border-right-width: 1rpx;
+}
+.item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-top-color: #b1b1b1;
+  border-top-style: solid;
+  border-top-width: 1rpx;
+  background: white;
+  padding: 20rpx
+}
+
+.item_img{
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.item_info{
+  display: flex;
+  flex-direction: column;
+  margin-right: 120rpx;
+}
+
+.hotel_name{
+  font-size: 30rpx;
+}
+.address{
+  font-size: 24rpx;
+  color: #b1b1b1
+}
+.price{
+  font-size: 30rpx;
+  color: #d8aa67
+}
+
+

@@ -1,0 +1,9 @@
+<!--client/pages/activity/activity.wxml-->
+<view>
+
+     <view wx:for="{{activitys}}" class='activity_item' >
+     <view class='activity_title'>{{item.activityTitle}}</view>
+     <image src='{{item.activityImg}}' class='activity_img'></image>
+     </view>
+
+</view>

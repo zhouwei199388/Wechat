@@ -1,23 +1,22 @@
-// client/pages/hotelIndex/hotelIndex.js
+// client/pages/activity/activity.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-         head_img_url:'../../image/img_head.jpg',
-    movies: [
-      { url: '../../image/img_head.jpg' },
-      { url: '../../image/img_head.jpg' },
-      { url: '../../image/img_head.jpg' },
-      { url: '../../image/img_head.jpg' }
-    ]  
-  },
-  
-  serch(){
-    wx.navigateTo({
-      url: '../hotelList/hotelList',
-    })
+       activitys:[
+         {
+           activityImg:'../../image/img_head.jpg',
+           activityTitle:'测试活动',
+           activityUrl:''
+         },
+         {
+           activityImg: '../../image/img_head.jpg',
+           activityTitle: '测试活动2',
+           activityUrl: ''
+         }
+       ]
   },
 
   /**

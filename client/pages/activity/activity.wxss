@@ -1,0 +1,9 @@
+/* client/pages/activity/activity.wxss */
+
+.activity_item{
+margin-right: 20rpx;
+margin-left: 20rpx
+}
+.activity_img{
+  width: 100%
+}

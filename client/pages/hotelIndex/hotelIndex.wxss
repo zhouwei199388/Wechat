@@ -8,7 +8,69 @@
     bottom:0;
 }
 
-
 .head_img{
   width: 100%
+}
+
+.icon{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 60rpx;
+  margin-left: 30rpx
+}
+
+.select_day{
+  font-size: 20rpx;
+  background: #e715bd;
+  border-radius: 14rpx;
+   margin-right: 60rpx;
+    margin-left: 60rpx;
+    padding: 6rpx
+}
+.select_date{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20rpx;
+  padding: 10rpx;
+  background: white;
+}
+
+.time_box{
+  display: flex;
+  flex-direction: column;
+}
+.time_text{
+  font-size: 20rpx
+}
+.time{
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+.time_day{
+  font-size: 60rpx;
+  margin-right: 20rpx
+}
+.time_date{
+  display: flex;
+  flex-direction: column;
+  font-size: 20rpx
+}
+
+.btn_serch{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 80rpx;
+  background: #d8aa67;
+  color: white;
+}
+
+.swiper {
+  height: 400rpx;
+  width: 100%;
+}
+.swiper image {
+  height: 100%;
+  width: 100%;
 }
