@@ -1,7 +1,10 @@
 {
   "pages": [
-    "pages/hotelIndex/hotelIndex",
     "pages/register/register",
+    "pages/hotelIndex/hotelIndex",
+    "pages/reserve/reserve",
+    "pages/hotelDetail/hotelDetail",
+   
     "pages/login/login",
     "pages/index/index",
     "pages/chat/chat",

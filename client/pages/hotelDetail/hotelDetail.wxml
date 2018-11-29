@@ -1,0 +1,54 @@
+<!--client/pages/hotelDetail/hotelDetail.wxml-->
+
+<view>
+  <image class='headImg' src='../../image/ic_hotel_detail.jpg'></image>
+
+  <view class='flex-row between border-bottom padding-20 background-white'>
+    <text class='text-size-30'>深圳市龙岗区布吉街道乐民路41号</text>
+    <image class='icon-30' src='../../image/icon_more.png'></image>
+  </view>
+  <view class='flex-row between padding-20 background-white'>
+    <view class='flex-row'>
+      <view class='flex-column center'>
+        <image class='icon-40' src='../../image/icon_my.png'></image>
+        <text class='text-size-24'>客服</text>
+      </view>
+      <view class='flex-column center margin-left-20'>
+        <image class='icon-40' src='../../image/icon_my.png'></image>
+        <text class='text-size-24'>电话</text>
+      </view>
+    </view>
+    <view>
+      <text class='text-size-24'>配置</text>
+      <image class='icon-30' src='../../image/icon_more.png'></image>
+    </view>
+  </view>
+
+  <view >
+    <view class='flex-row between padding-10 center background-white border-bottom margin-t-20'>
+      <view>
+        <text>11月15日</text>
+        <text class='text-size-24 color-2'>入住</text>
+      </view>
+      <text class='text-size-24 color-1'>共一晚</text>
+      <view>
+         <text>11月17日</text>
+        <text class='text-size-24 color-2'>离店</text>
+      </view>
+    </view>
+  </view>
+  <view wx:for="{{roomList}}" bindtap='onReserve' wx:key="{{this}}" class='flex-row between center padding-20 background-white border-bottom'>
+    <view class='flex-row'>
+      <image class='itemImg' src='{{item.roomImg}}'></image>
+      <view class='flex-column margin-left-20'>
+        <text class='text-size-30'>{{item.roomName}}</text>
+        <text class='text-size-24 color-2'>{{item.roomSetting}}</text>
+        <text class='text-size-24 color-2'>{{item.roomSex}}平米</text>
+      </view>
+    </view>
+    <view>
+      <text class='text-size-30 color-1'>￥{{item.roomPrice}}</text>
+      <text class='button-yd background-king text-size-30 margin-left-20'>预订</text>
+    </view>
+  </view>
+</view>

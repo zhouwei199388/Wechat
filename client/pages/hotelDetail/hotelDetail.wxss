@@ -1,0 +1,11 @@
+/* client/pages/hotelDetail/hotelDetail.wxss */
+
+.headImg {
+  width: 100%;
+  height: 400rpx;
+}
+
+.itemImg {
+  width: 180rpx;
+  height: 140rpx;
+}

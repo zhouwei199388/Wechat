@@ -21,7 +21,6 @@
 
 .select_day{
   font-size: 20rpx;
-  background: #e715bd;
   border-radius: 14rpx;
    margin-right: 60rpx;
     margin-left: 60rpx;

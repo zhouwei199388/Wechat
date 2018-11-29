@@ -11,7 +11,7 @@
 </view>
 
 <scroll-view>
-<view class='item' wx:for='{{hotelInfo}}' wx:key='{{this}}'>
+<view class='item' wx:for='{{hotelInfo}}' wx:key='{{this}}' bindtap='onItemClick'>
 <image class='item_img' src='{{item.hotelImg}}'></image>
  <view class='item_info'>
   <view class='hotel_name'>{{item.hotelName}}</view>

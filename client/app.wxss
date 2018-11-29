@@ -33,3 +33,98 @@ page{
     text-align: left;
     font-size: 14px;
 }
+
+
+.color-1{
+  color: #d8aa67;
+}
+.color-2{
+  color: #b1b1b1;
+}
+.color-white{
+  color: white;
+}
+
+.background-white{
+  background: white;
+}
+
+.background-king{
+  background:  #d8aa67;
+}
+
+.text-size-30{
+  font-size: 30rpx;
+}
+.text-size-24{
+  font-size: 24rpx;
+}
+.text-size-20{
+  font-size: 20rpx;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.between {
+  justify-content: space-between;
+}
+
+.around {
+  justify-content: space-around;
+}
+
+.icon-40{
+  width: 40rpx;
+  height: 40rpx;
+}
+.icon-30 {
+  width: 30rpx;
+  height: 30rpx;
+}
+.border-bottom {
+  border-bottom: 1px #b1b1b1 solid;
+}
+
+.center {
+  align-items: center;
+}
+
+.padding-1{
+  padding: 10rpx 20rpx;
+}
+
+.padding-20{
+  padding: 20rpx;
+}
+.padding-10{
+  padding: 10rpx;
+}
+
+.margin-left-10{
+  margin-left: 10rpx;
+}
+.margin-left-20{
+  margin-left: 20rpx;
+}
+.margin-left-40{
+  margin-left: 40rpx;
+}
+
+.margin-t-20{
+  margin-top: 20rpx;
+}
+
+.button-yd{
+  padding: 10rpx 20rpx;
+  color: white;
+  border-radius: 10rpx;
+}
+

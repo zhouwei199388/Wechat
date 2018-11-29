@@ -1,0 +1,33 @@
+<!--client/pages/reserve/reserve.wxml-->
+<view class='body'>
+  <view class='flex-row padding-20 background-white'>
+    <image src='../../image/ic_hotel_detail.jpg' class='image'></image>
+
+    <view class='flex-column margin-left-20'>
+      <text class='text-size-30'>四季星酒店</text>
+      <text class='text-size-24 color-2'>房型：豪华大床房</text>
+      <text class='text-size-24 color-2'>11月15日-11月17日 共两晚</text>
+    </view>
+  </view>
+  <view class='padding-20 border-bottom background-white margin-t-20'>
+    <text class='text-size-24'>房间数</text>
+  </view>
+
+  <view class='padding-20 border-bottom background-white'>
+    <text class='text-size-24'>入住人</text>
+    <text class='margin-left-40 text-size-24'>邹</text>
+  </view>
+  <view class='padding-20 border-bottom background-white'>
+    <text class='text-size-24'>手机号</text>
+    <text class='margin-left-40 text-size-24'>15090824065</text>
+  </view>
+</view>
+<view class='buttom flex-row center between'>
+  <text class='color-1 margin-left-20'>合计：228.00</text>
+  <view class='flex-row'>
+    <view class='flex-row center' >
+      <text class='color-white'>查看明细</text>
+    </view>
+    <text class='reserve'>立即预定</text>
+  </view> 
+</view>
