@@ -1,0 +1,2 @@
+<!--client/pages/start/start.wxml-->
+<button open-type='getUserInfo' style='margin-top:100rpx' bindgetuserinfo='onGetUserInfo'>授权</button>
