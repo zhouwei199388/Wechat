@@ -1,0 +1,28 @@
+/* client/pages/reserve/reserve.wxss */
+
+.image{
+  width: 200rpx;
+  height: 120rpx;
+}
+
+.body{
+  width: 100%;
+  height: 100%;
+}
+.buttom{
+  width: 100%;
+  height: 80rpx;
+  margin-top: -80rpx;
+  background: #333333;
+  position: absolute;
+  top: 100%;
+}
+.reserve{
+  height: 80rpx;
+  width: 200rpx;
+  background: #d8aa67;
+  color: white;
+  text-align: center;
+  line-height: 80rpx;
+  margin-left: 30rpx;
+}

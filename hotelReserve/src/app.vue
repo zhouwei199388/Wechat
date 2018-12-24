@@ -16,10 +16,10 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/reserve/reserve',
       'pages/start',
       'pages/login',
       'pages/my/my',
-      'pages/reserve/reserve',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -30,13 +30,13 @@ export default class extends wepy.app {
     "tabBar": {
     "list": [
       {
-        "pagePath": "pages/my/my",
+        "pagePath": 'pages/reserve/reserve',
         "text": "预订",
         'iconPath':'images/icon_yuding.png',
         "selectedIconPath":'images/icon_yuding.png',
       },
       {
-        "pagePath": 'pages/reserve/reserve',
+        "pagePath": "pages/my/my",
         "text": "我的",
         'iconPath':'images/icon_my.png',
         "selectedIconPath":'images/icon_my.png',

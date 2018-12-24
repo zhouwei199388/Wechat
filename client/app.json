@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/reserve/reserve",
     "pages/start/start",
     "pages/index/index",
     "pages/register/register",
     "pages/hotelIndex/hotelIndex",
-    "pages/reserve/reserve",
+    
     "pages/hotelDetail/hotelDetail",
     "pages/login/login",
     "pages/chat/chat",

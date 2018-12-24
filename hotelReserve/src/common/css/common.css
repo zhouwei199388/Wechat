@@ -175,6 +175,13 @@ page{
   margin-bottom: 20rpx;
 }
 
+.m-l-10{
+  margin-left: 10rpx;
+}
+.m-l-20{
+  margin-left: 20rpx;
+}
+
 .p-10{
   padding: 10rpx;
 }
