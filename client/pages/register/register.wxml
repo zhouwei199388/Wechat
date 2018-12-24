@@ -27,5 +27,6 @@
     </view>
   </view>
 
-  <button class="weui-btn login_btn_margin" bindtap='doRegister' type="primary">注册</button>
+  <!-- <button class="weui-btn login_btn_margin" bindtap='doRegister' type="primary">注册</button> -->
+  <button class="weui-btn login_btn_margin" open-type='getUserInfo' bindgetuserinfo='onGetUserInfo' type="primary">注册</button>
 </view>

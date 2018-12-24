@@ -22,6 +22,26 @@ Page({
 
 
   /**
+    * 生命周期函数--监听页面加载
+    */
+  onLoad: function (options) {
+
+    wx.login({
+      success: function (res) {
+        console.log(res.code)
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+
+  },
+
+  onGetUserInfo(res){
+  console.log(res.detail)
+  },
+
+
+  /**
    * 绑定手机号输入框
    */
   bindPhoneInput: function (e) {
@@ -115,7 +135,7 @@ Page({
       this.showToastText('请输入验证码')
       return true
     }
-    if(_this.codeTime ==null){
+    if (_this.codeTime == null) {
       this.showToastText('请获取验证码')
       return true
     }

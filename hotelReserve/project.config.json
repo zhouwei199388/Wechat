@@ -1,0 +1,15 @@
+{
+	"description": "酒店预订小程序",
+	"setting": {
+		"urlCheck": false,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wxe7b86a74f9e96203",
+	"projectname": "hotel",
+	"miniprogramRoot": "dist/",
+	"condition": {}
+}
