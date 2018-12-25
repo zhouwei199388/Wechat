@@ -11,25 +11,25 @@
       </view>
     </view>
     <view class='p-20 border-bottom bg-default ' style="margin-top: 20rpx">
-      <text class='font-30'>房间数</text>
+      <text class='font-30'>房间数:</text>
     </view>
 
     <view class='p-20 border-bottom bg-default'>
-      <text class='font-30'>入住人</text>
-      <text class='m-l-20 font-30'>邹</text>
+      <text class='font-30'>入住人:</text>
+      <text class='m-l-20 font-30 text-summary'>邹</text>
     </view>
     <view class='p-20 border-bottom bg-default'>
-      <text class='font-30'>手机号</text>
-      <text class='m-l-20 text-size-24'>15090824065</text>
+      <text class='font-30'>手机号:</text>
+      <text class='m-l-20 font-30 text-summary'>15090824065</text>
     </view>
   </view>
-  <view class='buttom flex-row center between'>
-    <text class='color-1 margin-left-20'>合计：228.00</text>
+  <view class='buttom flex-row-center' style="justify-content: space-between;">
+    <text class='text-white m-l-20 font-32'>合计：228.00</text>
     <view class='flex-row'>
-      <view class='flex-row center' >
-        <text class='color-white'>查看明细</text>
+      <view class='flex-row-center' >
+        <text class='text-white font-28'>查看明细</text>
       </view>
-      <text class='reserve'>立即预定</text>
+      <text class='reserve font-36 m-l-20'>立即预定</text>
     </view>
   </view>
 </template>

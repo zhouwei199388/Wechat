@@ -1,0 +1,15 @@
+
+.item{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10rpx;
+  background: white;
+  margin: 30rpx 30rpx;
+}
+
+.item_img{
+  width: 100%;
+  border-radius: 10rpx 10rpx 0 0;
+  height: 300rpx;
+}
+

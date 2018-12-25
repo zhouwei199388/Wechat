@@ -1,0 +1,54 @@
+/* client/pages/my/userCenter.wxss */
+
+.head_box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 360rpx;
+  background: #3f3e43;
+}
+
+.head_img{
+  width: 120rpx;
+  height: 120rpx;
+  margin-top: 100rpx;
+  border-radius: 80rpx;
+}
+.service_box{
+  display: flex;
+  flex-direction: row;
+  background: white;
+  padding: 20rpx
+}
+.service_item{
+  display: flex;
+  width: 33%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.item_img{
+  width: 60rpx;
+  height: 60rpx;
+}
+.itme_text{
+  font-size: 20rpx;
+}
+
+.more_box{
+  margin-top: 20rpx;
+  background: white
+}
+
+.close_login{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 30rpx;
+  color: white;
+  background: #d8aa67;
+}
+.login{
+  width: 200rpx;
+  margin-top: 140rpx;
+  font-size: 30rpx
+}

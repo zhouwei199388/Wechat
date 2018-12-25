@@ -1,0 +1,57 @@
+.root {
+  background: #efeff4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom:0;
+}
+
+.head_img{
+  width: 100%
+}
+
+.icon{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 60rpx;
+  margin-left: 30rpx
+}
+
+.select_day{
+  font-size: 20rpx;
+  border-radius: 14rpx;
+  margin-right: 60rpx;
+  margin-left: 60rpx;
+  padding: 6rpx 10rpx;
+  color: white;
+}
+.select_date{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20rpx;
+  padding: 10rpx;
+  background: white;
+}
+
+.btn_serch{
+  margin-left: 16%;
+  margin-right: 16%;
+  background: #d8aa67;
+  margin-top: -40rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: white;
+}
+
+.swiper {
+  height: 400rpx;
+  width: 100%;
+}
+.swiper image {
+  height: 100%;
+  width: 100%;
+}

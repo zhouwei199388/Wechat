@@ -171,7 +171,7 @@
         url:app.globalData.host+"user/add",
         data:JSON.stringify(this.loginData),
       };
-      httpUtil.post(requestHanlder)
+      httpUtil.post(requestHanlder,true,"获取用户信息...")
         .then(result=>{
           console.log(result);
           app.globalData.userInfo = result.user;
@@ -181,14 +181,14 @@
           console.log(phone);
           // //已经授权过  判断手机号是否为空
           // //如果不为空，说明还没有进行手机号码绑定
-          if (phone) {
+          // if (phone) {
               //开始时候定位的页面
               wx.switchTab({
-                url: 'work'
+                url: 'reserve/hotelIndex'
               });
-          } else {
-            that.redirectTo('login');
-          }
+          // } else {
+          //   that.redirectTo('login');
+          // }
         },error=>{
           that.showAuthorization();
           console.log(error);
@@ -211,11 +211,14 @@
         console.log(phone);
         //已经授权过  判断手机号是否为空
         //如果不为空，说明还没有进行手机号码绑定
-        if (phone) {
+        // if (phone) {
           //Todo 进入预订界面
-        } else {
-          that.redirectTo('login');
-        }
+          wx.switchTab({
+            url: 'reserve/hotelIndex'
+          });
+        // } else {
+        //   that.redirectTo('login');
+        // }
       } else {
         that.wxGetUserInfo();
       }

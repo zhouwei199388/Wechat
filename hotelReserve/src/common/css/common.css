@@ -163,8 +163,23 @@ page{
   border-left: 1px #F2F2F2 solid;
 }
 
+.icon-40{
+  width: 40rpx;
+  height: 40rpx;
+}
+.icon-30 {
+  width: 30rpx;
+  height: 30rpx;
+}
+
 .m-10 {
   margin: 10rpx;
+}
+.m-20 {
+  margin: 20rpx;
+}
+.m-30 {
+  margin: 30rpx;
 }
 
 .m-b-10{
@@ -173,6 +188,15 @@ page{
 
 .m-b-20{
   margin-bottom: 20rpx;
+}
+
+
+.m-t-10{
+  margin-top: 10rpx;
+}
+
+.m-t-20{
+  margin-top: 20rpx;
 }
 
 .m-l-10{
@@ -189,7 +213,13 @@ page{
 .p-20{
   padding: 20rpx;
 }
+.p-40{
+  padding: 40rpx;
+}
 
+.font-50{
+  font-size: 50rpx;
+}
 .font-36{
   font-size: 34rpx;
 }
@@ -208,6 +238,9 @@ page{
 
 .font-26{
   font-size: 26rpx;
+}
+.font-24{
+  font-size: 24rpx;
 }
 
 .color-primary{
@@ -250,6 +283,9 @@ page{
 
 .text-white{
   color: white;
+}
+.text-king{
+  color: #d8aa67;
 }
 
 .text-center{
@@ -353,6 +389,8 @@ page{
 
 .bg-custom {
   background-color: #01c0c8; }
+.bg-king{
+  background:  #d8aa67; }
 
 .bg-success {
   background-color: #22c6ab; }
@@ -383,3 +421,6 @@ page{
 
 .bg-default {
   background-color: #f8f9fa; }
+
+.bg-white {
+  background-color: white; }

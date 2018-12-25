@@ -16,10 +16,13 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/reserve/reserve',
       'pages/start',
-      'pages/login',
       'pages/my/my',
+      'pages/reserve/hotelDetail',
+      'pages/reserve/hotelList',
+      'pages/reserve/hotelIndex',
+      'pages/reserve/reserve',
+      'pages/login',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -30,7 +33,7 @@ export default class extends wepy.app {
     "tabBar": {
     "list": [
       {
-        "pagePath": 'pages/reserve/reserve',
+        "pagePath": 'pages/reserve/hotelIndex',
         "text": "预订",
         'iconPath':'images/icon_yuding.png',
         "selectedIconPath":'images/icon_yuding.png',
@@ -92,6 +95,12 @@ export default class extends wepy.app {
 
   userInfo(){
     return this.globalData.userInfo;
+  }
+
+  navigateTo(url){
+    wx.navigateTo({
+      url:url
+    })
   }
 
   showToast(message) {
