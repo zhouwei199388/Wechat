@@ -7,7 +7,12 @@
       </view>
     </view>
 
-    <view class="flex-column m-20 bg-white" style="border-radius: 10rpx;margin-top: -40rpx">
+    <view class="flex-column m-20 " style="margin-top: -30rpx">
+    <view class="flex-row-center bg-white p-20"  style="border-radius: 10rpx">
+      <image class="icon-40" src="../../images/ic_user_defaut.png"></image>
+      <text class="font-30 text-content m-l-20">绑定手机号</text>
+    </view>
+    <view class="flex-column bg-white m-t-20" style="border-radius: 10rpx;">
       <view class="flex-row-center p-20 border-bottom">
         <image class="icon-40" src="../../images/ic_user_defaut.png"></image>
         <text class="font-30 text-content m-l-20">我的订单</text>
@@ -16,6 +21,7 @@
         <image class="icon-40" src="../../images/ic_user_defaut.png"></image>
         <text class=" font-30 text-content m-l-20">我的优惠券</text>
       </view>
+    </view>
     </view>
   </view>
 </template>

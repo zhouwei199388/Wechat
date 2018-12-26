@@ -1,26 +1,26 @@
 <template>
   <view class="root">
     <view class="flex-column m-30 bg-white p-20" style="border-radius: 10rpx ">
-      <view class="flex-row font-24 text-summary p-20" style="justify-content: space-around">
+      <view class="flex-row font-24 text-summary p-20" style="justify-content: space-around" @tap="toSelectDate">
         <text>入住日期</text>
-        <text>住一晚</text>
+        <text>住{{selectDays}}晚</text>
         <text>离店日期</text>
       </view>
-      <view class="flex-row font-32 " style="justify-content: space-around">
-        <text>12月25日</text>
+      <view class="flex-row font-32 " style="justify-content: space-around" @tap="toSelectDate">
+        <text>{{showStartTime}}</text>
         <text class="text-summary">|</text>
-        <text>12月30日</text>
+        <text>{{showEndTime}}</text>
       </view>
     </view>
 
     <scroll-view>
-      <repeat for='{{hotelInfo}}' key='{{this}}'>
-        <view class='item' @tap='onItemClick'>
-          <image class='item_img' src='{{item.hotelImg}}'></image>
+      <repeat for='{{hotelInfos}}' key='{{this}}'>
+        <view class='item' @tap='onItemClick({{item.id}})'>
+          <image class='item_img' src='{{item.hotelImages[0].url}}'></image>
           <view class='flex-row p-20' style="justify-content: space-between">
             <!--<view class='font-30'>{{item.hotelName}}</view>-->
-            <view class='font-30 text-summary'>{{item.hotelAddress}}</view>
-            <view class='font-30 text-king'>￥{{item.price}}起</view>
+            <view class='font-30 text-summary'>{{item.hoteladdress}}</view>
+            <view class='font-30 text-king'>￥199起</view>
           </view>
         </view>
       </repeat>
@@ -36,42 +36,29 @@
   let app = null;
   export default class HotelList extends wepy.page {
     data = {
-      hotelInfos: [
-        {
-          hotelImg: '../../images/ic_hotel_detail.jpg',
-          hotelName: '四季星酒店',
-          hotelAddress: '深圳市龙岗区布吉大道',
-          price: 199,
-        }, {
-          hotelImg: '../../images/ic_hotel_detail.jpg',
-          hotelName: '四季星酒店',
-          hotelAddress: '深圳市龙岗区布吉大道',
-          price: 199,
-        }, {
-          hotelImg: '../../images/ic_hotel_detail.jpg',
-          hotelName: '四季星酒店',
-          hotelAddress: '深圳市龙岗区布吉大道',
-          price: 199,
-        }, {
-          hotelImg: '../../images/ic_hotel_detail.jpg',
-          hotelName: '四季星酒店',
-          hotelAddress: '深圳市龙岗区布吉大道',
-          price: 199,
-        }, {
-          hotelImg: '../../images/ic_hotel_detail.jpg',
-          hotelName: '四季星酒店',
-          hotelAddress: '深圳市龙岗区布吉大道',
-          price: 199,
-        }
-      ]
+      hotelInfos: [],
+      showStartTime:"--月--日",
+      showEndTime:"--月--日",
+      startTime:"--月--日",
+      endTime:"--月--日",
+      selectDays:1,
     };
     methods={
-      onItemClick(){
-         app.navigateTo('hotelDetail')
+      onItemClick(id){
+         app.navigateTo('hotelDetail?id='+id)
+      },
+      toSelectDate(){
+        app.navigateTo('../date/selectDate?startTime='+this.startTime+'&endTime='+this.endTime+"&page=3");
       }
     };
 
-
+    uploadSelectDate(startTime,endTime){
+      this.startTime = startTime;
+      this.endTime = endTime;
+      this.showStartTime = app.formatDateForMandD(startTime);
+      this.showEndTime = app.formatDateForMandD(endTime);
+      this.selectDays = app.getSelectDay(startTime,endTime);
+    }
     getHotelList(){
       const requestHandle={
         url:app.globalData.host+'hotelInfo/get',
@@ -80,13 +67,15 @@
       httpUtil.get(requestHandle)
         .then(result=>{
           this.hotelInfos = result.hotelModels;
+          this.$apply();
           console.log(result);
         },error=>{
            console.log(error);
         })
     }
-    onLoad(){
+    onLoad(option){
       app = this.$parent;
+      this.uploadSelectDate(option.startTime,option.endTime);
       this.getHotelList();
     }
   }

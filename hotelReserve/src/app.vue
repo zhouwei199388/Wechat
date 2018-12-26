@@ -22,6 +22,7 @@ export default class extends wepy.app {
       'pages/reserve/hotelList',
       'pages/reserve/hotelIndex',
       'pages/reserve/reserve',
+      'pages/date/selectDate',
       'pages/login',
     ],
     window: {
@@ -95,6 +96,54 @@ export default class extends wepy.app {
 
   userInfo(){
     return this.globalData.userInfo;
+  }
+
+
+  getSelectDay(startDate,endDate){
+    const startTime = new Date(startDate.replace(/-/g, "/")).getTime();
+    const endTime = new Date(endDate.replace(/-/g, "/")).getTime();
+    return (endTime - startTime) / (1000 * 60 * 60 * 24);
+  }
+
+
+  /**
+   * 格式化时间
+   * @param date
+   * @returns {string}
+   */
+  formatDateForMandD(formatDate) {
+    // let year = date.getFullYear();
+    const date = new Date(formatDate.replace(/-/g,"/"));
+    let month = date.getMonth() + 1;
+    month = month < 10 ? "0" + month : month;
+    let day = date.getDate();
+    day = day < 10 ? "0" + day : day;
+    return  month + "月" + day+"日";
+  }
+
+  /**
+   * 格式化时间
+   * @param date
+   * @returns {string}
+   */
+  formatDate(date) {
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    month = month < 10 ? "0" + month : month;
+    let day = date.getDate();
+    day = day < 10 ? "0" + day : day;
+    return year + "-" + month + "-" + day;
+  }
+
+  getPrePage(){
+    let pages = getCurrentPages();
+    let prePage = pages[pages.length - 2];
+    return prePage;
+  }
+  getPage(pageIndex){
+    let pages = getCurrentPages();
+    const page = pages[pages.length - pageIndex];
+    return page;
   }
 
   navigateTo(url){
