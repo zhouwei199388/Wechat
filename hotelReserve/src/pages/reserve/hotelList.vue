@@ -12,19 +12,16 @@
         <text>{{showEndTime}}</text>
       </view>
     </view>
-
-    <scroll-view>
-      <repeat for='{{hotelInfos}}' key='{{this}}'>
-        <view class='item' @tap='onItemClick({{item.id}})'>
-          <image class='item_img' src='{{item.hotelImages[0].url}}'></image>
-          <view class='flex-row p-20' style="justify-content: space-between">
-            <!--<view class='font-30'>{{item.hotelName}}</view>-->
-            <view class='font-30 text-summary'>{{item.hoteladdress}}</view>
-            <view class='font-30 text-king'>￥199起</view>
-          </view>
+    <repeat for='{{hotelInfos}}'>
+      <view class='item' @tap='onItemClick({{index}},{{item.id}})'>
+        <image class='item_img' src='{{item.hotelImages[0].url}}'></image>
+        <view class='flex-row p-20' style="justify-content: space-between">
+          <!--<view class='font-30'>{{item.hotelName}}</view>-->
+          <view class='font-30 text-summary'>{{item.hoteladdress}}</view>
+          <view class='font-30 text-king'>￥{{item.minprice}}起</view>
         </view>
-      </repeat>
-    </scroll-view>
+      </view>
+    </repeat>
   </view>
 
 </template>
@@ -37,45 +34,49 @@
   export default class HotelList extends wepy.page {
     data = {
       hotelInfos: [],
-      showStartTime:"--月--日",
-      showEndTime:"--月--日",
-      startTime:"--月--日",
-      endTime:"--月--日",
-      selectDays:1,
+      showStartTime: "--月--日",
+      showEndTime: "--月--日",
+      startTime: "--月--日",
+      endTime: "--月--日",
+      selectDays: 1,
     };
-    methods={
-      onItemClick(id){
-         app.navigateTo('hotelDetail?id='+id)
+    methods = {
+      onItemClick(index, id) {
+        console.log(index);
+        app.globalData.hotel = this.hotelInfos[index];
+        app.navigateTo('hotelDetail?id=' + id+'&startTime=' + this.startTime + '&endTime=' + this.endTime)
       },
-      toSelectDate(){
-        app.navigateTo('../date/selectDate?startTime='+this.startTime+'&endTime='+this.endTime+"&page=3");
+      toSelectDate() {
+        app.navigateTo('../date/selectDate?startTime=' + this.startTime + '&endTime=' + this.endTime + "&page=3");
       }
     };
 
-    uploadSelectDate(startTime,endTime){
+    uploadSelectDate(startTime, endTime) {
       this.startTime = startTime;
       this.endTime = endTime;
       this.showStartTime = app.formatDateForMandD(startTime);
       this.showEndTime = app.formatDateForMandD(endTime);
-      this.selectDays = app.getSelectDay(startTime,endTime);
+      this.selectDays = app.getSelectDay(startTime, endTime);
     }
-    getHotelList(){
-      const requestHandle={
-        url:app.globalData.host+'hotelInfo/get',
+
+    getHotelList() {
+      const requestHandle = {
+        url: app.globalData.host + 'hotelInfo/get',
       };
 
       httpUtil.get(requestHandle)
-        .then(result=>{
+        .then(result => {
           this.hotelInfos = result.hotelModels;
           this.$apply();
           console.log(result);
-        },error=>{
-           console.log(error);
+        }, error => {
+          console.log(error);
         })
     }
-    onLoad(option){
+
+    onLoad(option) {
       app = this.$parent;
-      this.uploadSelectDate(option.startTime,option.endTime);
+      this.uploadSelectDate(option.startTime, option.endTime);
       this.getHotelList();
     }
   }

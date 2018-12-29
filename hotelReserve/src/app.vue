@@ -56,6 +56,8 @@ export default class extends wepy.app {
 
   globalData = {
     userInfo: null,
+    hotel:null,
+    room:null,
     host:"http://101.132.195.191/",
   };
 
@@ -64,6 +66,13 @@ export default class extends wepy.app {
     this.use('requestfix')
   }
 
+  hotel(){
+    return this.globalData.hotel;
+  }
+
+  room(){
+    return this.globalData.room;
+  }
   onLaunch() {
     this.testAsync()
   }
@@ -92,6 +101,10 @@ export default class extends wepy.app {
         cb && cb(res.userInfo)
       }
     })
+  }
+
+  getHotel(){
+    this.globalData.hotel;
   }
 
   userInfo(){
