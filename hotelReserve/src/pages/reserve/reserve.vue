@@ -73,7 +73,25 @@
         this.order.roomnumber=this.array[this.index];
         this.countPrice();
       },
+      wxPay(){
+        timeStamp: new Date().getTime(),
+          nonceStr: '',
+          package: '',
+          signType: 'MD5',
+          paySign: '',
+        wx.requestPayment({
+
+          success(res) { },
+          fail(res) { }
+        })
+      }
     };
+
+
+    getNonce(){
+
+    }
+
     countPrice(){
       this.order.price = this.order.days*this.order.roomnumber*this.order.price;
     }
