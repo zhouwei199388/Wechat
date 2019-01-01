@@ -16,6 +16,7 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/login',
       'pages/start',
       'pages/my/my',
       'pages/reserve/hotelDetail',
@@ -23,7 +24,7 @@ export default class extends wepy.app {
       'pages/reserve/hotelIndex',
       'pages/reserve/reserve',
       'pages/date/selectDate',
-      'pages/login',
+
     ],
     window: {
       backgroundTextStyle: 'light',

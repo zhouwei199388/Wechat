@@ -6,8 +6,8 @@
      <view class='flex-row-center border-bottom p-20 bg-white'
            style="justify-content: space-between">
        <text class='font-28'>{{hotel.hoteladdress}}</text>
-       <view class="flex-row-center">
-         <text class='font-24 text-king'>地址</text>
+       <view class="flex-row-center" @tap="navigate">
+         <text class='font-24 text-king'>导航</text>
          <image class='icon-30' src='../../images/icon_more.png'></image>
        </view>
      </view>
@@ -20,20 +20,6 @@
      </view>
    </view>
 
-    <!--<view>-->
-      <!--<view class='flex-row-center p-10  bg-white border-bottom'-->
-            <!--style="justify-content:space-between;margin-top: 20rpx">-->
-        <!--<view>-->
-          <!--<text>11月15日</text>-->
-          <!--<text class='font-24 text-summary'>入住</text>-->
-        <!--</view>-->
-        <!--<text class='font-24 text-king'>共一晚</text>-->
-        <!--<view>-->
-          <!--<text>11月17日</text>-->
-          <!--<text class='font-24 text-summary'>离店</text>-->
-        <!--</view>-->
-      <!--</view>-->
-    <!--</view>-->
     <repeat for="{{roomList}}">
       <view class='flex-row-center p-20 m-20 bg-white border-bottom'
             style="justify-content: space-between;border-radius: 10rpx">
@@ -77,7 +63,21 @@
       toReserve(index) {
         app.globalData.room = this.roomList[index];
         app.navigateTo('reserve?startTime=' + this.startTime + '&endTime=' + this.endTime);
+      },
+      navigate(){
+        const hotel = this.hotel;
+        if(hotel.latitude==null||hotel.longitude==null){
+          app.showToast("经纬度不存在");
+        }
+        wx.openLocation({
+          latitude: hotel.latitude,
+          longitude: hotel.longitude,
+          scale: 18,
+          name: hotel.addressname,
+          address:hotel.hoteladdress
+        })
       }
+
     };
 
     uploadSelectDate(startTime, endTime) {
