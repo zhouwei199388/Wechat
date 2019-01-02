@@ -64,10 +64,16 @@ function request(method, requestHandle, showLoading = true, message) {
           // console.log(res);
           //服务端返回处理
           let result = JSON.parse(res.data);
+          let header;
+          if(result.header==null){
+            header = result;
+          }else{
+            header = result.header;
+          }
           // console.log(result);
-          if (result.header.code != 0) {
-            showToast(result.header.msg);
-            fail(result.header.msg);
+          if (header.code != 0) {
+            showToast(header.msg);
+            fail(header.msg);
           } else {
             success(result);
           }

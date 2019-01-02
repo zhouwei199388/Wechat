@@ -73,25 +73,10 @@
         this.order.roomnumber=this.array[this.index];
         this.countPrice();
       },
-      wxPay(){
-        timeStamp: new Date().getTime(),
-          nonceStr: '',
-          package: '',
-          signType: 'MD5',
-          paySign: '',
-        wx.requestPayment({
-
-          success(res) { },
-          fail(res) { }
-        })
-      }
     };
-
-
     getNonce(){
 
     }
-
     countPrice(){
       this.order.price = this.order.days*this.order.roomnumber*this.order.price;
     }
@@ -99,6 +84,8 @@
       const order = this.order;
       if(order.phone == null){
         app.showToast("请先绑定手机号再预订");
+        app.navigateTo("../login");
+        return;
       }
       const data = new Date();
       order.ordernumber = app.formatDate(data)+data.getTime();
