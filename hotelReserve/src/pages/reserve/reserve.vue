@@ -54,7 +54,7 @@
       index:0,
       order:{
         hotel:'',
-        userId:0,
+        userid:0,
         hotelroom:'',
         roomnumber:1,
         people:'',
@@ -115,14 +115,14 @@
       app =  this.$parent;
       this.room = app.globalData.room;
       this.userInfo = app.globalData.userInfo;
-      this.order.hotel=app.globalData.hotel.hotelName;
+      this.order.hotel=app.globalData.hotel.hotelname;
       this.order.hotelroom = this.room.name;
       this.order.startdate =option.startTime;
       this.order.enddate = option.endTime;
       this.order.price = this.room.price;
       this.order.people=this.userInfo.nickname;
       this.order.phone = this.userInfo.phone;
-      this.order.userId = this.userInfo.id;
+      this.order.userid = this.userInfo.id;
       this.order.roomnumber = 1;
       this.uploadSelectDate(option.startTime, option.endTime);
       console.log(this.order)
