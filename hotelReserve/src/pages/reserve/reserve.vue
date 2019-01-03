@@ -54,9 +54,11 @@
       index:0,
       order:{
         hotel:'',
+        userId:0,
         hotelroom:'',
         roomnumber:1,
         people:'',
+        phone:'',
         note:'',
         price:0.00,
         startdate:'',
@@ -74,9 +76,6 @@
         this.countPrice();
       },
     };
-    getNonce(){
-
-    }
     countPrice(){
       this.order.price = this.order.days*this.order.roomnumber*this.order.price;
     }
@@ -90,7 +89,7 @@
       const data = new Date();
       order.ordernumber = app.formatDate(data)+data.getTime();
       const requestHandle ={
-        url:app.globalData.host+"order/add",
+        url:app.globalData.host+"order/wxPrePay",
         data:order,
       };
        httpUtil.post(requestHandle)
@@ -123,6 +122,7 @@
       this.order.price = this.room.price;
       this.order.people=this.userInfo.nickname;
       this.order.phone = this.userInfo.phone;
+      this.order.userId = this.userInfo.id;
       this.order.roomnumber = 1;
       this.uploadSelectDate(option.startTime, option.endTime);
       console.log(this.order)
