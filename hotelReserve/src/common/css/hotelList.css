@@ -6,6 +6,13 @@
   background: white;
   margin: 30rpx 30rpx;
 }
+.item:active{
+  display: flex;
+  flex-direction: column;
+  border-radius: 10rpx;
+  background: rgba(102, 102, 102, 0.37);
+  margin: 30rpx 30rpx;
+}
 
 .item_img{
   width: 100%;

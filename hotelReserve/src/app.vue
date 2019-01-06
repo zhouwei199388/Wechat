@@ -8,7 +8,8 @@
   box-sizing: border-box;
 }
 </style>
-
+<style src='weui.css'></style>
+<style src='./common/css/common.css'></style>
 <script>
 import wepy from 'wepy'
 import 'wepy-async-function'
@@ -58,7 +59,7 @@ export default class extends wepy.app {
     userInfo: null,
     hotel:null,
     room:null,
-    host:"http://101.132.195.191/",
+    host:"http://101.132.195.191/api/",
   };
 
   constructor () {

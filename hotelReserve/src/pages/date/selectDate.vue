@@ -241,7 +241,15 @@
         this.endTime = nowTime;
         this.clickNum++;
       } else {
-        this.endTime = nowTime;
+        const startTime = new Date(this.startTime.replace(/-/g,"/")).getTime();
+        const now = new Date(nowTime.replace(/-/g,"/")).getTime();
+        if(startTime>now){
+          this.startTime = nowTime;
+        }else{
+          this.endTime = nowTime;
+        }
+
+
         this.clickNum = 0;
         this.updatePage();
         wx.navigateBack({

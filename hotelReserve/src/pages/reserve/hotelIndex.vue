@@ -19,7 +19,7 @@
         <text>{{showEndTime}}</text>
       </view>
     </view>
-    <view class='btn_serch font-36' bindtap='toHotelList'>查找酒店</view>
+    <button class='btn_search font-36' bindtap='toHotelList'>查找酒店</button>
   </view>
 </template>
 

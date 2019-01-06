@@ -35,14 +35,18 @@
   background: white;
 }
 
-.btn_serch{
+.btn_search{
   margin-left: 16%;
   margin-right: 16%;
   background: #d8aa67;
-  text-align: center;
   border-radius: 40rpx;
-  height: 80rpx;
-  line-height: 80rpx;
+  color: white;
+}
+.btn_search:active{
+  margin-left: 16%;
+  margin-right: 16%;
+  background: #d87d0e;
+  border-radius: 40rpx;
   color: white;
 }
 
