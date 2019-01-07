@@ -59,7 +59,7 @@ export default class extends wepy.app {
     userInfo: null,
     hotel:null,
     room:null,
-    host:"http://101.132.195.191/api/",
+    host:"https://zwwjj1314.com/api/",
   };
 
   constructor () {

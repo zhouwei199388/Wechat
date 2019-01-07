@@ -94,10 +94,18 @@
       };
        httpUtil.post(requestHandle)
          .then(result=>{
-           wx.showToast({
-             title: '提交订单成功',
-             icon: 'success',
-             duration: 2000
+           wx.requestPayment({
+             timeStamp: result.timeStamap,
+             nonceStr: result.nonceStr,
+             package: result.packageStr,
+             signType: 'MD5',
+             paySign: result.paySign,
+             success(res) {
+               console.log(res)
+             },
+             fail(res) {
+               console.log(res)
+             }
            })
          },eroor=>{
            console.log(eroor);
