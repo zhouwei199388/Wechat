@@ -392,6 +392,20 @@ page{
 .bg-king{
   background:  #d8aa67; }
 
+.btn-king-click{
+  background:  #d8aa67;
+}
+.btn-king-click:active{
+  background: #d8aa3d;
+}
+
+.item-click{
+  background: white;
+}
+.item-click:active{
+  background: rgba(153, 153, 153, 0.29);
+}
+
 .bg-success {
   background-color: #22c6ab; }
 

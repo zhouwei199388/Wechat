@@ -157,6 +157,8 @@
         };
         httpUtil.post(requestHandle)
           .then(result => {
+            app.showToast("绑定手机号成功");
+            app.back();
             console.log(result);
           }, error => {
             console.log(error);

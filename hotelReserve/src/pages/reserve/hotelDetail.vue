@@ -2,23 +2,23 @@
   <view>
     <image class='headImg' src='{{hotel.hotelImages[0].url}}'></image>
 
-   <view class="m-20 " style="border-radius: 10rpx">
-     <view class='flex-row-center border-bottom p-20 bg-white'
-           style="justify-content: space-between">
-       <text class='font-28'>{{hotel.hoteladdress}}</text>
-       <view class="flex-row-center" @tap="navigate">
-         <text class='font-24 text-king'>导航</text>
-         <image class='icon-30' src='../../images/icon_more.png'></image>
-       </view>
-     </view>
-     <view class='flex-row-center p-20 bg-white' style="justify-content: space-between;">
-       <text class="font-28">{{hotel.facility}}</text>
-       <view class="flex-row-center">
-         <text class='font-24 text-king'>配置</text>
-         <image class='icon-30' src='../../images/icon_more.png'></image>
-       </view>
-     </view>
-   </view>
+    <view class="m-20 " style="border-radius: 10rpx" >
+      <view class='flex-row-center border-bottom p-20 item-click'
+            style="justify-content: space-between" @tap="navigate">
+        <text class='font-28'>{{hotel.hoteladdress}}</text>
+        <view class="flex-row-center" >
+          <text class='font-24 text-king'>导航</text>
+          <image class='icon-30' src='../../images/icon_more.png'></image>
+        </view>
+      </view>
+      <view class='flex-row-center p-20 item-click ' style="justify-content: space-between;">
+        <text class="font-28">{{hotel.facility}}</text>
+        <view class="flex-row-center">
+          <text class='font-24 text-king'>配置</text>
+          <image class='icon-30' src='../../images/icon_more.png'></image>
+        </view>
+      </view>
+    </view>
 
     <repeat for="{{roomList}}">
       <view class='flex-row-center p-20 m-20 bg-white border-bottom'
@@ -31,14 +31,29 @@
             <!--<text class='font-24 text-summary'>{{item.roomSex}}平米</text>-->
           </view>
         </view>
-        <view style="margin-right: 20rpx">
+        <view  style="margin-right: 20rpx">
           <text class='font-30 text-king'>￥{{item.price}}</text>
-          <text class="bg-king font-30 m-l-20 text-white" @tap="toReserve({{index}})"
+          <text class="btn-king-click font-30 m-l-20 text-white" @tap="toReserve({{index}})"
                 style='padding: 10rpx 20rpx;border-radius: 10rpx'>预订
           </text>
         </view>
       </view>
     </repeat>
+
+    <!-- 弹出的编辑输入框模块 -->
+    <view hidden="{{!showRecordModal}}">
+      <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove"></view>
+      <view class="modal-dialog" style="top: 30%;">
+        <view class="modal-title">{{title}}</view>
+        <view class="modal-content text-center">
+          请先绑定手机号
+        </view>
+        <view class="modal-footer">
+          <view class="btn-cancel" @tap="onRecordCancel" data-status="cancel">取消</view>
+          <view class="btn-confirm" @tap="onRecordConfirm" data-status="confirm">确定</view>
+        </view>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -50,23 +65,39 @@
   export default class HotelDetail extends wepy.page {
     data = {
       roomList: [],
-      hotelId:null,
-      hotel:null,
+      hotelId: null,
+      hotel: null,
+      showRecordModal: false,
+      isRecordCancel:false,
       showStartTime: "--月--日",
       showEndTime: "--月--日",
       startTime: "--月--日",
       endTime: "--月--日",
       selectDays: 1,
-      windows:['有窗','无窗'],
+      windows: ['有窗', '无窗'],
     };
     methods = {
       toReserve(index) {
+        console.log(app.getPhone());
+        if (app.getPhone()==null) {
+          this.showRecordModal = true;
+          return;
+        }
         app.globalData.room = this.roomList[index];
         app.navigateTo('reserve?startTime=' + this.startTime + '&endTime=' + this.endTime);
       },
-      navigate(){
+      onRecordCancel() {
+        this.isRecordCancel = true;
+        this.showRecordModal = false;
+      },
+      onRecordConfirm() {
+        this.isRecordCancel = false;
+        this.showRecordModal = false;
+        app.navigateTo('../login');
+      },
+      navigate() {
         const hotel = this.hotel;
-        if(hotel.latitude==null||hotel.longitude==null){
+        if (hotel.latitude == null || hotel.longitude == null) {
           app.showToast("经纬度不存在");
         }
         wx.openLocation({
@@ -74,7 +105,7 @@
           longitude: hotel.longitude,
           scale: 18,
           name: hotel.addressname,
-          address:hotel.hoteladdress
+          address: hotel.hoteladdress
         })
       }
 
@@ -87,9 +118,10 @@
       this.showEndTime = app.formatDateForMandD(endTime);
       this.selectDays = app.getSelectDay(startTime, endTime);
     }
+
     getRoomList() {
       const requestHandle = {
-        url: app.globalData.host + "room/getAllRoom?hotelId="+this.hotelId
+        url: app.globalData.host + "room/getAllRoom?hotelId=" + this.hotelId
       };
       httpUtil.get(requestHandle)
         .then(result => {
@@ -114,4 +146,4 @@
 </script>
 
 <style src="../../common/css/hotelDetail.css"></style>
-<style src="../../common/css/common.css"></style>
+<style src="../../common/css/modal.css"></style>

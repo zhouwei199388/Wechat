@@ -108,6 +108,14 @@ export default class extends wepy.app {
     this.globalData.hotel;
   }
 
+  back(delta = 1) {
+    wx.navigateBack({
+      delta:delta,
+    })
+  }
+  getPhone(){
+    return this.globalData.userInfo.phone;
+  }
   userInfo(){
     return this.globalData.userInfo;
   }

@@ -13,7 +13,7 @@
       </view>
     </view>
     <repeat for='{{hotelInfos}}'>
-      <view class='item' @tap='onItemClick({{index}},{{item.id}})'>
+      <view class='item item-click' @tap='onItemClick({{index}},{{item.id}})'>
         <image class='item_img' src='{{item.hotelImages[0].url}}'></image>
         <view class='flex-row p-20' style="justify-content: space-between">
           <!--<view class='font-30'>{{item.hotelName}}</view>-->
@@ -83,4 +83,3 @@
 </script>
 
 <style src="../../common/css/hotelList.css"/>
-<style src="../../common/css/common.css"/>

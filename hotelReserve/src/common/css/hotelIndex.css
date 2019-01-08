@@ -42,13 +42,13 @@
   border-radius: 40rpx;
   color: white;
 }
-.btn_search:active{
-  margin-left: 16%;
-  margin-right: 16%;
-  background: #d87d0e;
-  border-radius: 40rpx;
-  color: white;
-}
+/*.btn_search:active{*/
+  /*margin-left: 16%;*/
+  /*margin-right: 16%;*/
+  /*background: #d87d0e;*/
+  /*border-radius: 40rpx;*/
+  /*color: white;*/
+/*}*/
 
 .swiper {
   height: 400rpx;
