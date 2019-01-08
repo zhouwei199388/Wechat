@@ -11,13 +11,25 @@
           <image class='icon-30' src='../../images/icon_more.png'></image>
         </view>
       </view>
-      <view class='flex-row-center p-20 item-click ' style="justify-content: space-between;">
+      <view class='flex-row-center p-20 item-click border-bottom' style="justify-content: space-between;">
         <text class="font-28">{{hotel.facility}}</text>
         <view class="flex-row-center">
           <text class='font-24 text-king'>配置</text>
           <image class='icon-30' src='../../images/icon_more.png'></image>
         </view>
       </view>
+      <view class="flex-column bg-white p-20" style="border-radius: 10rpx ">
+      <view class="flex-row font-24 text-summary p-20" style="justify-content: space-around" @tap="toSelectDate">
+        <text>入住日期</text>
+        <text>住{{selectDays}}晚</text>
+        <text>离店日期</text>
+      </view>
+      <view class="flex-row font-32 " style="justify-content: space-around" @tap="toSelectDate">
+        <text>{{showStartTime}}</text>
+        <text class="text-summary">|</text>
+        <text>{{showEndTime}}</text>
+      </view>
+    </view>
     </view>
 
     <repeat for="{{roomList}}">
@@ -77,6 +89,9 @@
       windows: ['有窗', '无窗'],
     };
     methods = {
+      toSelectDate() {
+        app.navigateTo('../date/selectDate?startTime=' + this.startTime + '&endTime=' + this.endTime + "&page=4");
+      },
       toReserve(index) {
         console.log(app.getPhone());
         if (app.getPhone()==null) {

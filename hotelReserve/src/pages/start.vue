@@ -9,13 +9,13 @@
 
 </style>
 <template>
-  <view class="mech-wrap" style="display:flex;flex-direction:column;padding: 32px;">
+  <view class="p-40">
 
-    <view style="display:flex;flex-direction:column;align-items: center">
+    <view class="text-center">
       <image class="userinfo-avatar" src="../images/icon.jpg" background-size="cover"></image>
     </view>
 
-    <view style="display:flex;align-items: center;justify-content: center;margin-top: 16rpx;width: 100%">
+    <view class="m-t-20 text-center" >
       <text style="justify-content: center;font-size: 24px">欢迎使用四季星酒店预订</text>
     </view>
 
@@ -27,7 +27,7 @@
       <view>
         <text style="font-size: 14px">为了方便您更好的体验四季星酒店，我们将获取您的基本用户信息，请点击授权</text>
       </view>
-      <button type="primary" style="margin-top: 32px;width: 100%" open-type="getUserInfo"
+      <button type="primary" style="margin-top: 32px" open-type="getUserInfo"
               bindgetuserinfo="onGotUserInfo">确认授权
       </button>
     </block>

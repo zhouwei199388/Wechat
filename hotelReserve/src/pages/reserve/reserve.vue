@@ -10,6 +10,18 @@
         <text class='font-30 m-b-10 text-summary'>{{showStartTime}}-{{showEndTime}} 共{{order.days}}晚</text>
       </view>
     </view>
+    <view class="flex-column bg-white p-20" style="border-radius: 10rpx ">
+      <view class="flex-row font-24 text-summary p-20" style="justify-content: space-around" @tap="toSelectDate">
+        <text>入住日期</text>
+        <text>住{{order.days}}晚</text>
+        <text>离店日期</text>
+      </view>
+      <view class="flex-row font-32 " style="justify-content: space-around" @tap="toSelectDate">
+        <text>{{showStartTime}}</text>
+        <text class="text-summary">|</text>
+        <text>{{showEndTime}}</text>
+      </view>
+    </view>
     <view class='p-20 border-bottom bg-white ' style="margin-top: 20rpx">
       <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
         <view class="picker font-30">
@@ -75,10 +87,14 @@
         this.order.roomnumber=this.array[this.index];
         this.countPrice();
       },
+      toSelectDate() {
+        app.navigateTo('../date/selectDate?startTime=' + this.startTime + '&endTime=' + this.endTime + "&page=5");
+      },
     };
     countPrice(){
-      this.order.price = this.order.days*this.order.roomnumber*this.order.price;
+      this.order.price = (this.order.days*this.order.roomnumber*(this.room.price*100))/100;
     }
+
     sendOrder(){
       const order = this.order;
       if(order.phone == null){
@@ -117,7 +133,9 @@
       this.endTime = endTime;
       this.showStartTime = app.formatDateForMandD(startTime);
       this.showEndTime = app.formatDateForMandD(endTime);
-      this.days = app.getSelectDay(startTime, endTime);
+      this.order.days = app.getSelectDay(startTime, endTime);
+
+      this.countPrice();
     }
     onLoad(option){
       app =  this.$parent;
