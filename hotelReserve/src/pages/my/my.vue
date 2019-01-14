@@ -7,13 +7,13 @@
       </view>
     </view>
 
-    <view class="flex-column m-20 " style="margin-top: -30rpx">
+    <view class="flex-column m-20 " style="margin-top: -30rpx" @tap="toBindPhone">
     <view class="flex-row-center bg-white p-20"  style="border-radius: 10rpx">
       <image class="icon-40" src="../../images/ic_user_defaut.png"></image>
-      <text class="font-30 text-content m-l-20">绑定手机号</text>
+      <text class="font-30 text-content m-l-20">{{userInfo.phone==""?"绑定手机号":userInfo.phone}}</text>
     </view>
-    <view class="flex-column bg-white m-t-20" style="border-radius: 10rpx;">
-      <view class="flex-row-center p-20 border-bottom">
+    <view class="flex-column bg-white m-t-20" style="border-radius: 10rpx;" >
+      <view class="flex-row-center p-20 border-bottom" @tap="toOrder">
         <image class="icon-40" src="../../images/ic_user_defaut.png"></image>
         <text class="font-30 text-content m-l-20">我的订单</text>
       </view>
@@ -32,11 +32,23 @@
 
   let app = null;
   export default class My extends wepy.page {
+    config={
+      navigationBarTitleText:"我的"
+    };
     data = {
       userInfo: null,
-
     };
-    methods = {};
+    methods = {
+      toOrder(){
+        app.navigateTo("myOrder")
+      },
+      toBindPhone(){
+        if(this.userInfo.phone!=""){
+          return;
+        }
+        app.navigateTo("../login")
+      }
+    };
 
     onLoad() {
       app = this.$parent;

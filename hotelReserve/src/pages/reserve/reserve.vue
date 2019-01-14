@@ -55,6 +55,9 @@
   import httpUtil from '../../common/js/httputil'
   let app =null;
   export default class Reserve extends wepy.page{
+    config={
+      navigationBarTitleText:"预订"
+    };
     data={
       room:null,
       userInfo:null,

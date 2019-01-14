@@ -19,6 +19,7 @@ export default class extends wepy.app {
     pages: [
       'pages/start',
       'pages/my/my',
+      'pages/my/myOrder',
       'pages/reserve/hotelDetail',
       'pages/reserve/hotelList',
       'pages/reserve/hotelIndex',

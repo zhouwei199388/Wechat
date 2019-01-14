@@ -29,6 +29,9 @@
 
   let app = null;
   export default class HotelIndex extends wepy.page {
+    config={
+      navigationBarTitleText:"四季星酒店预订"
+    };
     data = {
       head_img_url:'../../images/img_head.jpg',
       movies: [

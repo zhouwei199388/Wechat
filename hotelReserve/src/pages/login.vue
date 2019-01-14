@@ -13,7 +13,7 @@
   }
 
   .input_style {
-    border-color: #e9ecef;
+    border-color: #cecece;
     border-width: 1px;
     border-style: solid;
     height: 35px;
@@ -101,7 +101,9 @@
 
   let app;
   export default class Login extends wepy.page {
-
+    config={
+      navigationBarTitleText:"绑定手机号"
+    };
     data = {
       phone: '',
       codeInput: '',
@@ -133,7 +135,6 @@
           return;
         }
         if (that.codeInput === "") {
-          // console.log("验证码不能为空")
           app.showToast("验证码不能为空");
           return;
         }
@@ -141,7 +142,7 @@
           app.showToast("验证码格式不正确");
           return;
         }
-        if(that.codeInput!==that.verifyCode){
+        if(that.codeInput!=that.verifyCode){
           app.showToast("验证码错误");
         }
         if(that.codeTimeOut()){
@@ -163,36 +164,6 @@
           }, error => {
             console.log(error);
           });
-
-        // wx.request({
-        //   url: that.bindUrl,
-        //   method: 'PUT',
-        //   header: header,
-        //   data: JSON.stringify(data),
-        //   dataType: 'JSON',
-        //   success: function(res) {
-        //     app.hideLoading();
-        //     let result = JSON.parse(res.data);
-        //     if (result.code !== 0) {
-        //       app.showToast(result.message);
-        //       return;
-        //     }
-        //     app.globalData.userInfo.phone = that.phone;
-        //     wx.setStorage({
-        //       key: "userInfo",
-        //       data: app.globalData.userInfo
-        //     });
-        //     app.showToast("登录成功");
-        //     wx.redirectTo({
-        //       url: 'found/mechanism?start=true'
-        //     })
-        //   },
-        //   // 响应错误
-        //   fail: function(loginResponseError) {
-        //     app.hideLoading();
-        //     console.log(loginResponseError)
-        //   },
-        // })
       },
 
       getCode() {

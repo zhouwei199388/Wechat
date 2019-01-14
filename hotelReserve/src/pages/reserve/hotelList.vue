@@ -32,6 +32,9 @@
 
   let app = null;
   export default class HotelList extends wepy.page {
+    config={
+      navigationBarTitleText:"酒店列表"
+    };
     data = {
       hotelInfos: [],
       showStartTime: "--月--日",

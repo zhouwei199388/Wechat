@@ -75,6 +75,9 @@
 
   let app = null;
   export default class HotelDetail extends wepy.page {
+    config={
+      navigationBarTitleText:"酒店详情"
+    };
     data = {
       roomList: [],
       hotelId: null,
