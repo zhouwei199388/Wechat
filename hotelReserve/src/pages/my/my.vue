@@ -9,16 +9,16 @@
 
     <view class="flex-column m-20 " style="margin-top: -30rpx" @tap="toBindPhone">
     <view class="flex-row-center bg-white p-20"  style="border-radius: 10rpx">
-      <image class="icon-40" src="../../images/ic_user_defaut.png"></image>
+      <image class="icon-50" src="../../images/ic_phone.svg"></image>
       <text class="font-30 text-content m-l-20">{{userInfo.phone==""?"绑定手机号":userInfo.phone}}</text>
     </view>
     <view class="flex-column bg-white m-t-20" style="border-radius: 10rpx;" >
       <view class="flex-row-center p-20 border-bottom" @tap="toOrder">
-        <image class="icon-40" src="../../images/ic_user_defaut.png"></image>
+        <image class="icon-50" src="../../images/ic_order.svg"></image>
         <text class="font-30 text-content m-l-20">我的订单</text>
       </view>
       <view class="flex-row-center p-20 border-bottom">
-        <image class="icon-40" src="../../images/ic_user_defaut.png"></image>
+        <image class="icon-50" src="../../images/ic_yhq.svg"></image>
         <text class=" font-30 text-content m-l-20">我的优惠券</text>
       </view>
     </view>

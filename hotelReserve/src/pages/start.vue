@@ -12,7 +12,7 @@
   <view class="p-40">
 
     <view class="text-center">
-      <image class="userinfo-avatar" src="../images/icon.jpg" background-size="cover"></image>
+      <image class="userinfo-avatar" src="../images/icon.png" background-size="cover"></image>
     </view>
 
     <view class="m-t-20 text-center" >

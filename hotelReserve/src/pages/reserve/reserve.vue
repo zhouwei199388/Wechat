@@ -1,7 +1,7 @@
 <template>
 
   <view class='body'>
-    <view class=' p-20 bg-white flex-row-center'>
+    <view class=' p-20 bg-white flex-row-center border-bottom'>
       <image src='../../images/ic_hotel_detail.jpg' class='image'></image>
 
       <view class='flex-column m-l-20'>

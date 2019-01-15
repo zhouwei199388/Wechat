@@ -163,6 +163,12 @@ page{
   border-left: 1px #F2F2F2 solid;
 }
 
+
+.icon-50{
+  width: 50rpx;
+  height: 50rpx;
+}
+
 .icon-40{
   width: 40rpx;
   height: 40rpx;
@@ -215,6 +221,10 @@ page{
 }
 .p-40{
   padding: 40rpx;
+}
+
+.p-b-10{
+  padding-bottom: 10rpx;
 }
 
 .font-50{
