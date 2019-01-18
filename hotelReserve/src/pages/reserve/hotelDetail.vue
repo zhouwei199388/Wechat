@@ -102,7 +102,7 @@
           return;
         }
         app.globalData.room = this.roomList[index];
-        app.navigateTo('reserve?startTime=' + this.startTime + '&endTime=' + this.endTime);
+        app.navigateTo('reserve?type=0&startTime=' + this.startTime + '&endTime=' + this.endTime);
       },
       onRecordCancel() {
         this.isRecordCancel = true;

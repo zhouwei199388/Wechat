@@ -1,5 +1,5 @@
+<style src="../../common/css/modal.css"></style>
 <template>
-
   <view class='body'>
     <view class=' p-20 bg-white flex-row-center border-bottom'>
       <image src='../../images/ic_hotel_detail.jpg' class='image'></image>
@@ -32,18 +32,35 @@
 
     <view class='p-20 border-bottom bg-white'>
       <text class='font-30'>入住人:</text>
-      <text class='m-l-20 font-30 text-summary'>{{order.people}}</text>
+      <text class='m-l-20 font-30 text-summary'>{{userInfo.nickname}}</text>
     </view>
     <view class='p-20 border-bottom bg-white'>
       <text class='font-30'>手机号:</text>
-      <text class='m-l-20 font-30 text-summary'>{{order.phone}}</text>
+      <text class='m-l-20 font-30 text-summary'>{{userInfo.phone}}</text>
     </view>
   </view>
+
+  <!-- 查看明细 -->
+  <view hidden="{{!showRecordModal}}">
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove"></view>
+    <view class="modal-dialog" style="top: 30%;">
+      <view class="modal-title border-bottom">价格明细</view>
+      <view class="modal-content flex-row-center" style="justify-content: space-between;">
+        <view class="font-28">房费</view>
+        <view class="font-28 text-king">￥{{order.price}}</view>
+      </view>
+      <view class="flex-row-center modal-content" style="justify-content: space-between;">
+        <view class="font-30">总价</view>
+        <view class="font-32 text-king">￥{{order.price}}</view>
+      </view>
+    </view>
+  </view>
+
   <view class='buttom flex-row-center' style="justify-content: space-between;">
     <text class='text-white m-l-20 font-32'>合计：{{order.price}}</text>
     <view class='flex-row'>
       <view class='flex-row-center' >
-        <text class='text-white font-28'>查看明细</text>
+        <text class='text-white font-28' @tap="showRecord">查看明细</text>
       </view>
       <text class='reserve font-36 m-l-20' @tap="sendOrder">立即预定</text>
     </view>
@@ -53,12 +70,15 @@
 <script>
   import wepy from 'wepy'
   import httpUtil from '../../common/js/httputil'
+  import util from '../../common/js/utils'
   let app =null;
   export default class Reserve extends wepy.page{
     config={
       navigationBarTitleText:"预订"
     };
     data={
+      showRecordModal:false,
+      type:0,
       room:null,
       userInfo:null,
       showStartTime: "--月--日",
@@ -68,22 +88,25 @@
       array:[1,2,3,4,5],
       index:0,
       order:{
-        hotel:'',
+        hotelid:0,
+        roomid:0,
         userid:0,
-        hotelroom:'',
         roomnumber:1,
-        people:'',
-        phone:'',
         note:'',
         price:0.00,
         startdate:'',
         enddate:'',
         ordernumber:'',
-        status:0,
         days:1
       }
     };
     methods={
+      showRecord(){
+        this.showRecordModal = true;
+      },
+      hideModal(){
+        this.showRecordModal = false;
+      },
       bindPickerChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value);
         this.index = e.detail.value;
@@ -91,7 +114,13 @@
         this.countPrice();
       },
       toSelectDate() {
-        app.navigateTo('../date/selectDate?startTime=' + this.startTime + '&endTime=' + this.endTime + "&page=5");
+        let page ;
+        if(this.type==0){
+          page = 5;
+        }else{
+          page = 2;
+        }
+        app.navigateTo('../date/selectDate?startTime=' + this.startTime + '&endTime=' + this.endTime + "&page="+page);
       },
     };
     countPrice(){
@@ -100,11 +129,11 @@
 
     sendOrder(){
       const order = this.order;
-      if(order.phone == null){
-        app.showToast("请先绑定手机号再预订");
-        app.navigateTo("../login");
-        return;
-      }
+      // if(order.phone == null){
+      //   app.showToast("请先绑定手机号再预订");
+      //   app.navigateTo("../login");
+      //   return;
+      // }
       const data = new Date();
       order.ordernumber = app.formatDate(data)+data.getTime();
       const requestHandle ={
@@ -114,11 +143,11 @@
        httpUtil.post(requestHandle)
          .then(result=>{
            wx.requestPayment({
-             timeStamp: result.timeStamap,
-             nonceStr: result.nonceStr,
-             package: result.packageStr,
+             timeStamp: result.preOrder.timestamap,
+             nonceStr: result.preOrder.noncestr,
+             package: result.preOrder.packagestr,
              signType: 'MD5',
-             paySign: result.paySign,
+             paySign: result.preOrder.paysign,
              success(res) {
                console.log(res)
              },
@@ -141,20 +170,28 @@
       this.countPrice();
     }
     onLoad(option){
+      this.type=option.type;
+      if(this.type==0){
+        this.order.startdate =option.startTime;
+        this.order.enddate = option.endTime;
+      }else{
+        const date = new Date();
+        this.order.startdate =util.formatDate(date);
+        date.setTime(date.getTime()+3600*1000*24);
+        this.order.enddate = util.formatDate(date);
+      }
       app =  this.$parent;
       this.room = app.globalData.room;
       this.userInfo = app.globalData.userInfo;
-      this.order.hotel=app.globalData.hotel.hotelname;
+      this.order.hotelid=app.globalData.hotel.id;
+      this.order.roomid = this.room.id;
       this.order.hotelroom = this.room.name;
-      this.order.startdate =option.startTime;
-      this.order.enddate = option.endTime;
       this.order.price = this.room.price;
-      this.order.people=this.userInfo.nickname;
-      this.order.phone = this.userInfo.phone;
       this.order.userid = this.userInfo.id;
       this.order.roomnumber = 1;
-      this.uploadSelectDate(option.startTime, option.endTime);
       console.log(this.order)
+      this.uploadSelectDate(this.order.startdate, this.order.enddate);
+
     }
   };
 </script>

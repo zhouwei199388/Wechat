@@ -136,6 +136,7 @@ export default class extends wepy.app {
    */
   formatDateForMandD(formatDate) {
     // let year = date.getFullYear();
+    console.log(formatDate);
     const date = new Date(formatDate.replace(/-/g,"/"));
     let month = date.getMonth() + 1;
     month = month < 10 ? "0" + month : month;

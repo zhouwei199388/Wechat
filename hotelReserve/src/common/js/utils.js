@@ -48,6 +48,21 @@ function redirectTo(url) {
   })
 }
 
+
+/**
+ * 格式化时间
+ * @param date
+ * @returns {string}
+ */
+function formatDate(date) {
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  month = month < 10 ? "0" + month : month;
+  let day = date.getDate();
+  day = day < 10 ? "0" + day : day;
+  return year + "-" + month + "-" + day;
+}
+
 //金额格式化，要求传入的单位为分,将返回 12.00格式的金额
 function moneyFormat(money) {
   return (money/100).toFixed(2);
@@ -108,4 +123,5 @@ module.exports = {
   navigateTo:navigateTo,
   redirectTo:redirectTo,
   isEmojiCharacter:isEmojiCharacter,
+  formatDate:formatDate,
 };
