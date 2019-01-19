@@ -1,5 +1,12 @@
 <template>
 
+  <view class="flex-row-center bg-white">
+    <view class="{{status==-1?'tab-item-selected':'tab-item'}}" @tap="getOrder(-1)">全部</view>
+    <view class="{{status==0?'tab-item-selected':'tab-item'}}" @tap="getOrder(0)">待支付</view>
+    <view class="{{status==1?'tab-item-selected':'tab-item'}}" @tap="getOrder(1)">待入住</view>
+    <view class="{{status==2?'tab-item-selected':'tab-item'}}" @tap="getOrder(2)">已取消</view>
+  </view>
+
   <repeat for="{{orders}}">
     <view class="flex-column m-20 bg-white p-20" style="border-radius: 10rpx">
       <view class="flex-row-center border-bottom p-b-10" style="justify-content: space-between;">
@@ -17,7 +24,7 @@
       </view>
       <view class="flex-row-center font-30 border-top" style="justify-content: space-between;padding: 10rpx 0">
         <view class="text-content">金额:{{item.price}}</view>
-        <text class="pre-pay-btn font-28" @tap="wxPay({{index}})">{{item.status==0?'支付':'再订一间'}}</text>
+        <text class="pre-pay-btn font-28" @tap="wxPay({{index}})">{{statusBtn[item.status]}}</text>
       </view>
     </view>
   </repeat>
@@ -36,9 +43,14 @@
       status:-1,
       orders: [],
       statusStr: ["待支付", "待入住", "已入住", "已取消"],
+      statusBtn:["支付","退款","再订一间","再订一间"]
     };
 
     methods = {
+      getOrder(status){
+        this.status = status;
+        this.getOrders();
+      },
       wxPay(index) {
         console.log(index);
         const order = this.orders[index];
@@ -100,5 +112,22 @@
     background: #cecece;
     border-radius: 6rpx;
     padding: 4rpx 20rpx;
+  }
+  .tab-item{
+    flex:1;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
+    color: #000;
+    text-align: center;
+  }
+  .tab-item-selected{
+    flex:1;
+    height: 70rpx;
+    line-height: 70rpx;
+    font-size: 30rpx;
+    color: #f7a349;
+    border-bottom: 6rpx solid #f7a349;
+    text-align: center;
   }
 </style>

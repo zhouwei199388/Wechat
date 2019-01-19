@@ -71,10 +71,15 @@
   import wepy from 'wepy'
   import httpUtil from '../../common/js/httputil'
   import util from '../../common/js/utils'
+  import NoFind from '../../components/common/noFind'
   let app =null;
   export default class Reserve extends wepy.page{
     config={
       navigationBarTitleText:"预订"
+    };
+
+    components={
+
     };
     data={
       showRecordModal:false,
@@ -140,7 +145,7 @@
         url:app.globalData.host+"order/wxPrePay",
         data:order,
       };
-       httpUtil.post(requestHandle)
+       httpUtil.post(requestHandle,"生成订单中...")
          .then(result=>{
            wx.requestPayment({
              timeStamp: result.preOrder.timestamap,
