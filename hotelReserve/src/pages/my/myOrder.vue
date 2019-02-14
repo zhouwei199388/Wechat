@@ -24,7 +24,7 @@
       </view>
       <view class="flex-row-center font-30 border-top" style="justify-content: space-between;padding: 10rpx 0">
         <view class="text-content">金额:{{item.price}}</view>
-        <text class="pre-pay-btn font-28" @tap="wxPay({{index}})">{{statusBtn[item.status]}}</text>
+        <text class="pre-pay-btn font-28" @tap="btnClick({{item.status}},{{index}})">{{statusBtn[item.status]}}</text>
       </view>
     </view>
   </repeat>
@@ -51,30 +51,58 @@
         this.status = status;
         this.getOrders();
       },
-      wxPay(index) {
-        console.log(index);
-        const order = this.orders[index];
-        if (order.status == 0) {
-          wx.requestPayment({
-            timeStamp: order.preOrder.timestamap,
-            nonceStr: order.preOrder.noncestr,
-            package: order.preOrder.packagestr,
-            signType: 'MD5',
-            paySign: order.preOrder.paysign,
-            success(res) {
-              console.log(res)
-            },
-            fail(res) {
-              console.log(res)
-            }
-          })
-        }else{
-          app.globalData.hotel = order.hotelInfo;
-          app.globalData.room = order.hotelRoom;
-          app.navigateTo("../reserve/reserve?type=1");
+      btnClick(status,index){
+        console.log(status +" "+ index);
+        switch (status){
+          case 0:
+            this.wxPay(index);
+            break;
+          case 1:
+            this.wxRefund(this.orders[index].id);
+            break;
+          case 2:
+            break;
+          case 3:
+            break;
         }
-      }
+      },
     };
+
+    wxRefund(orderId){
+      const requestHandle = {
+        url: app.globalData.host + "order/wxRefund?orderId="+orderId,
+      };
+     httpUtil.get(requestHandle)
+       .then(res=>{
+         console.log(res);
+       },error=>{
+         console.log(error);
+       })
+    }
+
+    wxPay(index) {
+      console.log(index);
+      const order = this.orders[index];
+      if (order.status == 0) {
+        wx.requestPayment({
+          timeStamp: order.preOrder.timestamap,
+          nonceStr: order.preOrder.noncestr,
+          package: order.preOrder.packagestr,
+          signType: 'MD5',
+          paySign: order.preOrder.paysign,
+          success(res) {
+            console.log(res)
+          },
+          fail(res) {
+            console.log(res)
+          }
+        })
+      }else{
+        app.globalData.hotel = order.hotelInfo;
+        app.globalData.room = order.hotelRoom;
+        app.navigateTo("../reserve/reserve?type=1");
+      }
+    }
 
     getOrders() {
       const requestHandle = {
