@@ -159,7 +159,9 @@
         httpUtil.post(requestHandle)
           .then(result => {
             app.showToast("绑定手机号成功");
+            app.globalData.userInfo = result.user;
             app.back();
+            app.getPrePage().updataUserInfo();
             console.log(result);
           }, error => {
             console.log(error);
@@ -186,15 +188,15 @@
         const requestHander = {
           url: app.globalData.host + "user/sendVerifyCode?phone=" + that.phone + "&code=" + that.verifyCode,
         };
-        httpUtil.post(requestHander)
-          .then(result => {
-            console.log(result);
-            that.codeTime = new Date().getTime();
-          }, error => {
-            that.codeBtnEnable = true;
-            that.onUnload();
-            console.log(error);
-          });
+        // httpUtil.post(requestHander)
+        //   .then(result => {
+        //     console.log(result);
+        //     that.codeTime = new Date().getTime();
+        //   }, error => {
+        //     that.codeBtnEnable = true;
+        //     that.onUnload();
+        //     console.log(error);
+        //   });
       },
     };
 

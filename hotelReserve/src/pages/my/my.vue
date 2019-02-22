@@ -43,12 +43,15 @@
         app.navigateTo("myOrder")
       },
       toBindPhone(){
-        if(this.userInfo.phone!=""){
-          return;
-        }
+        // if(this.userInfo.phone!=""){
+        //   return;
+        // }
         app.navigateTo("../login")
       }
     };
+    updataUserInfo(){
+      this.userInfo = app.globalData.userInfo;
+    }
 
     onLoad() {
       app = this.$parent;
