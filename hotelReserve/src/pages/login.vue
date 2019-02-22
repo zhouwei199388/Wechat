@@ -79,7 +79,7 @@
   <view>
     <view class="login_view">
       <view class="logo_parent_view">
-        <image class="logo_img" src="../images/icon.jpg"/>
+        <image class="logo_img" src="../images/icon.png"/>
       </view>
       <input type="number" class="input_style margin10_v" bindinput="bindPhoneInput" placeholder="请输入手机号"/>
       <view class="code_view">
@@ -188,15 +188,15 @@
         const requestHander = {
           url: app.globalData.host + "user/sendVerifyCode?phone=" + that.phone + "&code=" + that.verifyCode,
         };
-        // httpUtil.post(requestHander)
-        //   .then(result => {
-        //     console.log(result);
-        //     that.codeTime = new Date().getTime();
-        //   }, error => {
-        //     that.codeBtnEnable = true;
-        //     that.onUnload();
-        //     console.log(error);
-        //   });
+        httpUtil.post(requestHander)
+          .then(result => {
+            console.log(result);
+            that.codeTime = new Date().getTime();
+          }, error => {
+            that.codeBtnEnable = true;
+            that.onUnload();
+            console.log(error);
+          });
       },
     };
 

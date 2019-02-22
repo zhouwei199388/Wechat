@@ -97,7 +97,7 @@
       },
       toReserve(index) {
         console.log(app.getPhone());
-        if (app.getPhone()==null) {
+        if (!app.getPhone()) {
           this.showRecordModal = true;
           return;
         }

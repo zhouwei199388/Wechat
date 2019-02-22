@@ -134,11 +134,6 @@
 
     sendOrder(){
       const order = this.order;
-      // if(order.phone == null){
-      //   app.showToast("请先绑定手机号再预订");
-      //   app.navigateTo("../login");
-      //   return;
-      // }
       const data = new Date();
       order.ordernumber = app.formatDate(data)+data.getTime();
       const requestHandle ={

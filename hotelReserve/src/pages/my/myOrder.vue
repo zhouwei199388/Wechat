@@ -4,7 +4,7 @@
     <view class="{{status==-1?'tab-item-selected':'tab-item'}}" @tap="getOrder(-1)">全部</view>
     <view class="{{status==0?'tab-item-selected':'tab-item'}}" @tap="getOrder(0)">待支付</view>
     <view class="{{status==1?'tab-item-selected':'tab-item'}}" @tap="getOrder(1)">待入住</view>
-    <view class="{{status==2?'tab-item-selected':'tab-item'}}" @tap="getOrder(2)">已取消</view>
+    <view class="{{status==2?'tab-item-selected':'tab-item'}}" @tap="getOrder(3)">已取消</view>
   </view>
 
   <repeat for="{{orders}}">
@@ -74,6 +74,8 @@
       };
      httpUtil.get(requestHandle)
        .then(res=>{
+         this.getOrders();
+         app.showToast("退款成功");
          console.log(res);
        },error=>{
          console.log(error);

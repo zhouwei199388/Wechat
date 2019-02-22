@@ -10,7 +10,7 @@
     <view class="flex-column m-20 " style="margin-top: -30rpx" @tap="toBindPhone">
     <view class="flex-row-center bg-white p-20"  style="border-radius: 10rpx">
       <image class="icon-50" src="../../images/ic_phone.svg"></image>
-      <text class="font-30 text-content m-l-20">{{userInfo.phone==""?"绑定手机号":userInfo.phone}}</text>
+      <text class="font-30 text-content m-l-20">{{userInfo.phone==null||userInfo.phone==""?"绑定手机号":userInfo.phone}}</text>
     </view>
     <view class="flex-column bg-white m-t-20" style="border-radius: 10rpx;" >
       <view class="flex-row-center p-20 border-bottom" @tap="toOrder">
@@ -43,10 +43,9 @@
         app.navigateTo("myOrder")
       },
       toBindPhone(){
-        // if(this.userInfo.phone!=""){
-        //   return;
-        // }
-        app.navigateTo("../login")
+        if(this.userInfo.phone==""||this.userInfo.phone==null){
+          app.navigateTo("../login")
+        }
       }
     };
     updataUserInfo(){
