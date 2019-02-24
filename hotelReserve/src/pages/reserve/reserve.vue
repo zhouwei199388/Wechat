@@ -38,7 +38,15 @@
       <text class='font-30'>手机号:</text>
       <text class='m-l-20 font-30 text-summary'>{{userInfo.phone}}</text>
     </view>
+
+    <view class="flex-column p-20 font-30 text-summary" >
+      <text>提示：</text>
+      <text>1、携带所有入住人的有效身份证件办理入住，入住必须按照一人一证</text>
+      <text>2、请在14:00至23:59内入住并于次日12:00之前退房；如需提前入住或延时退房，请咨询商家”</text>
+    </view>
   </view>
+
+
 
   <!-- 查看明细 -->
   <view hidden="{{!showRecordModal}}">

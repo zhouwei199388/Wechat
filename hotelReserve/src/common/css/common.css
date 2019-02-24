@@ -15,8 +15,7 @@ page{
   position: fixed;
   left: 0;
   top: 0;
-  padding-top: 60rpx;
-  height: 128rpx;
+  height: 80rpx;
   background: #f44444;
   box-sizing: border-box;
   color: #FFFFFF;
@@ -255,6 +254,10 @@ page{
 
 .color-primary{
   color: #4798e8;
+}
+
+.color-red{
+  color: red;
 }
 
 .text-primary {
