@@ -32,6 +32,8 @@
           </view>
         </view>
       </repeat>
+      <noFind :text.sync="emptyMessage" hidden="{{!empty}}"></noFind>
+
     </view>
   </view>
   <view class='buttom flex-row-center font-24 text-white' style="justify-content: space-between;">
@@ -42,7 +44,7 @@
 <script>
   import wepy from 'wepy'
   import httpUtil from '../../common/js/httputil'
-
+  import noFind from '../../components/common/noFind'
   let app;
   export default class MyOrder extends wepy.page {
     config = {
@@ -51,11 +53,15 @@
     data = {
       hint:"提示：订单当天18点前可免费取消，逾期不可取消或变更，如未入住，酒店将扣除全额房费",
       status:-1,
+      empty: false,
+      emptyMessage:'暂无记录数据',
       orders: [],
       statusStr: ["待支付", "待入住", "已入住", "已取消"],
       statusBtn:["支付","取消","再订一间","再订一间"]
     };
-
+    components = {
+      noFind: noFind,
+    };
     methods = {
       getOrder(status){
         this.updateHint(status);
@@ -131,6 +137,11 @@
       httpUtil.get(requestHandle)
         .then(result => {
           this.orders = result.orders;
+          if(result.orders.length>0){
+            this.empty = false;
+          }else{
+            this.empty = true;
+          }
           this.$apply();
           console.log(result);
         }, error => {

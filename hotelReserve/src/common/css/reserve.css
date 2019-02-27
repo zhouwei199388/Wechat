@@ -9,7 +9,13 @@
   width: 100%;
   height: 100%;
 }
-
+.buttom{
+  width: 100%;
+  height: 80rpx;
+  background: black;
+  position: fixed;
+  bottom: 0;
+}
 .reserve{
   height: 80rpx;
   width: 200rpx;

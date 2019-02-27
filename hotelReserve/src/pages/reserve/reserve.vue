@@ -47,8 +47,7 @@
   </view>
 
 
-
-  <!-- 查看明细 -->
+  <!-- 支付结果 -->
   <view hidden="{{!showRecordModal}}">
     <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove"></view>
     <view class="modal-dialog" style="top: 30%;">
@@ -60,6 +59,21 @@
       <view class="flex-row-center modal-content" style="justify-content: space-between;">
         <view class="font-30">总价</view>
         <view class="font-32 text-king">￥{{order.price}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 查看明细 -->
+  <view hidden="{{!showPayModal}}">
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove"></view>
+    <view class="modal-dialog" style="top: 30%;">
+      <view class="modal-title">{{title}}</view>
+      <view class="modal-content text-center" style="font-size: 28rpx">
+        支付遇到问题请及时与客服联系！
+      </view>
+      <view class="modal-footer">
+        <view class="btn-cancel" @tap="onRecordCancel" data-status="cancel">支付失败</view>
+        <view class="btn-confirm" @tap="onRecordConfirm" data-status="confirm">支付成功</view>
       </view>
     </view>
   </view>
@@ -85,12 +99,12 @@
     config={
       navigationBarTitleText:"预订"
     };
-
     components={
 
     };
     data={
       showRecordModal:false,
+      showPayModal:false,
       type:0,
       room:null,
       userInfo:null,
@@ -114,6 +128,15 @@
       }
     };
     methods={
+      onRecordCancel() {
+        this.showPayModal = false;
+        app.navigateTo('../my/myOrder');
+      },
+      onRecordConfirm() {
+        this.showPayModal = false;
+        app.navigateTo('../my/myOrder');
+      },
+
       showRecord(){
         this.showRecordModal = true;
       },
@@ -141,6 +164,7 @@
     }
 
     sendOrder(){
+      // this.showPayModal=true;
       const order = this.order;
       const data = new Date();
       order.ordernumber = app.formatDate(data)+data.getTime();
@@ -157,9 +181,13 @@
              signType: 'MD5',
              paySign: result.preOrder.paysign,
              success(res) {
+               app.navigateTo('../my/myOrder');
+               util.showToast("支付成功");
                console.log(res)
              },
              fail(res) {
+               app.navigateTo('../my/myOrder');
+              util.showToast("支付失败");
                console.log(res)
              }
            })
