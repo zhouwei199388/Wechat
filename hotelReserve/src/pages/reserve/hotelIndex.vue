@@ -1,9 +1,18 @@
 <template>
   <view class='root'>
-    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
-      <repeat for="{{movies}}" key="{{this}}">
+    <!--<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">-->
+      <!--<repeat for="{{movies}}" key="{{this}}">-->
+        <!--<swiper-item>-->
+          <!--<image src="{{item.url}}" mode="aspectFill"/>-->
+        <!--</swiper-item>-->
+      <!--</repeat>-->
+    <!--</swiper>-->
+    <swiper class="bannerBox" autoplay="true" interval="3000" duration="500" previous-margin="50rpx" next-margin="50rpx" @change="bannerChange">
+      <repeat wx:for="{{movies}}" key="{{this}}">
         <swiper-item>
-          <image src="{{item.url}}" class="slide-image" mode="aspectFill"/>
+          <!--<div class="fix pl5 pr5 box_bb">-->
+              <image class="banner mt10" src="{{item.url}}" mode="aspectFill" />
+          <!--</div>-->
         </swiper-item>
       </repeat>
     </swiper>
@@ -74,4 +83,37 @@
     }
   };
 </script>
+<style scoped>
+  .bannerBox{
+    height: 208px;
+  }
+  .banner{
+    overflow: hidden;
+    height: 168px;
+    transition: transform 500ms;
+    transform: scale(0.95,0.9);  /* 因为非主图看不清，所以可以变形处理 */
+    border-radius: 8px;
+    box-shadow: 0px 6px 10px 0px rgba(179,154,139,1);
+  }
+  .banner.active{
+    transform: scale(1,1);
+  }
+  .bannerDots{
+    width: 100%;
+    left: 0;
+    bottom: 40px;
+    height: 6px;
+  }
+  .dot{
+    width: 6px;
+    height: 6px;
+    margin: 0 3px;
+    border-radius: 3px;
+    background-color: #fff;
+  }
+  .dot.active{
+    width: 15px;
+    background-color: #7090E8;
+  }
+</style>
 <style src="../../common/css/hotelIndex.css"></style>

@@ -1,5 +1,5 @@
 <template>
-  <view class='noFind-box'>
+  <view >
     <view class='noFind-icon'>
       &#xe631;
     </view>
