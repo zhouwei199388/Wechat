@@ -7,10 +7,11 @@
       </view>
     </view>
 
-    <view class="flex-column m-20 " style="margin-top: -30rpx" @tap="toBindPhone">
+    <view class="flex-column m-20 " style="margin-top: -30rpx" >
     <view class="flex-row-center bg-white p-20"  style="border-radius: 10rpx">
       <image class="icon-50" src="../../images/ic_phone.svg"></image>
-      <text class="font-30 text-content m-l-20">{{userInfo.phone==null||userInfo.phone==""?"绑定手机号":userInfo.phone}}</text>
+      <text class="font-30 text-content m-l-20">{{userInfo.phone==null||userInfo.phone==""?"请绑定手机号":userInfo.phone}}</text>
+      <view class="update-btn" @tap="toBindPhone" >{{userInfo.phone==null||userInfo.phone==""?"绑定手机号":"修改手机号"}}</view>
     </view>
     <view class="flex-column bg-white m-t-20" style="border-radius: 10rpx;" >
       <view class="flex-row-center p-20 border-bottom" @tap="toOrder">
@@ -43,12 +44,16 @@
         app.navigateTo("myOrder")
       },
       toBindPhone(){
+        let title;
         if(this.userInfo.phone==""||this.userInfo.phone==null){
-          app.navigateTo("../login")
+          title = "绑定手机号";
+        }else{
+          title = "修改手机号";
         }
+        app.navigateTo("../login?title="+title);
       }
     };
-    updataUserInfo(){
+    updateUserInfo(){
       this.userInfo = app.globalData.userInfo;
     }
 

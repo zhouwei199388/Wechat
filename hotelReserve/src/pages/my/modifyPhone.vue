@@ -79,7 +79,7 @@
   <view>
     <view class="login_view">
       <view class="logo_parent_view">
-        <image class="logo_img" src="../images/icon.png"/>
+        <image class="logo_img" src="../../images/icon.png"/>
       </view>
       <input type="number" class="input_style margin10_v" bindinput="bindPhoneInput" placeholder="请输入手机号"/>
       <view class="code_view">
@@ -89,7 +89,7 @@
         </button>
       </view>
       <button class="login_btn" @tap="bindPhone">
-        {{title}}
+        绑定
       </button>
     </view>
   </view>
@@ -97,15 +97,14 @@
 
 <script>
   import wepy from 'wepy';
-  import httpUtil from '../common/js/httputil'
+  import httpUtil from '../../common/js/httputil'
 
   let app;
-  export default class Login extends wepy.page {
+  export default class ModifyPhone extends wepy.page {
     config={
       navigationBarTitleText:"绑定手机号"
     };
     data = {
-      title:"",
       phone: '',
       codeInput: '',
       timer: null,
@@ -159,13 +158,13 @@
         };
         httpUtil.post(requestHandle)
           .then(result => {
-            app.showSuccessToast("绑定手机号成功");
+            app.showToast("绑定手机号成功");
             app.globalData.userInfo = result.user;
             app.back();
             app.getPrePage().updateUserInfo();
             console.log(result);
           }, error => {
-            app.showWarnToast("绑定失败");
+            app.showToast("绑定失败");
             console.log(error);
           });
       },
@@ -243,11 +242,7 @@
       }, 1000)
     }
 
-    onLoad(option) {
-      this.title = option.title;
-      wx.setNavigationBarTitle({
-        title: option.title
-      });
+    onLoad() {
       app = this.$parent;
       this.userInfo = app.userInfo();
     }

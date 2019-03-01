@@ -14,18 +14,22 @@
             <view class="font-32 text-content">{{item.hotelInfo.hotelname}}</view>
             <view class="font-28 text-king">{{statusStr[item.status]}}</view>
           </view>
-          <view class="font-28 text-summary m-t-10 ">
-            订单号:{{item.ordernumber}}
+          <view class="font-28 text-content m-t-10 ">
+            <text class="font-30 text-title "> 单号：</text>
+            <text class="m-l-10 text-content">{{item.ordernumber}}</text>
           </view>
-          <view class="font-28 text-summary m-t-10 ">
-            房型:{{item.hotelroom.name}} {{item.roomnumber}}间
+          <view class="font-28 text-content m-t-10 ">
+            <text class="font-30 text-title "> 房型：</text>
+            <text class="m-l-10 text-content">{{item.hotelRoom.name}} {{item.roomnumber}}间</text>
           </view>
-          <view class="font-28 text-summary">
-            入住:{{item.startdate}} 共{{item.days}}晚 离店:{{item.enddate}}
+          <view class="font-28 text-content m-b-10">
+            <text class="font-30 text-title"> 地址：</text>
+            <text class="m-l-10 text-content">{{item.hotelInfo.hoteladdress}}</text>
           </view>
-          <view class="font-28 text-summary m-b-10">
-            {{item.hotelInfo.hoteladdress}}
+          <view class="font-30 text-title m-b-20">
+            入住：{{item.startdate}} <text class="text-king">共{{item.days}}晚</text> 离店：{{item.enddate}}
           </view>
+
           <view class="flex-row-center font-30 border-top" style="justify-content: space-between;padding: 10rpx 0">
             <view class="text-content">金额:{{item.price}}</view>
             <text class="pre-pay-btn font-28" @tap="btnClick({{item.status}},{{index}})">{{statusBtn[item.status]}}</text>
@@ -149,8 +153,19 @@
         })
     }
 
-    onLoad() {
+    onLoad(option) {
       app = this.$parent;
+      this.status = option.type;
+      if(option.type==0){
+        this.status = 0;
+        app.showToast("支付失败")
+      }else if(option.type==1){
+        this.status = 1;
+        app.showToast("支付成功")
+      }else{
+        this.status = -1;
+      }
+      this.updateHint(this.status);
       this.getOrders();
     }
   }

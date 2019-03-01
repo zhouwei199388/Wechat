@@ -2,7 +2,7 @@
 <template>
   <view class='body'>
     <view class=' p-20 bg-white flex-row-center border-bottom'>
-      <image src='../../images/ic_hotel_detail.jpg' class='image'></image>
+      <image src='{{room.roomImages[0].url}}' class='image'></image>
 
       <view class='flex-column m-l-20'>
         <text class='font-30 m-b-10'>{{order.hotel}}</text>
@@ -181,13 +181,11 @@
              signType: 'MD5',
              paySign: result.preOrder.paysign,
              success(res) {
-               app.navigateTo('../my/myOrder');
-               util.showToast("支付成功");
+               app.navigateTo('../my/myOrder?type=1');
                console.log(res)
              },
              fail(res) {
-               app.navigateTo('../my/myOrder');
-              util.showToast("支付失败");
+               app.navigateTo('../my/myOrder?type=0');
                console.log(res)
              }
            })

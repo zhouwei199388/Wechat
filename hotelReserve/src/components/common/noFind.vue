@@ -1,5 +1,5 @@
 <template>
-  <view >
+  <view style="padding-top:100rpx ">
     <view class='noFind-icon'>
       &#xe631;
     </view>

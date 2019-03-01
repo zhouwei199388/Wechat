@@ -8,6 +8,23 @@
   background: #3f3e43;
 }
 
+.update-btn{
+  background:#d8aa67 ;
+  font-size: 26rpx;
+  padding: 6rpx 20rpx;
+  color: white;
+  border-radius: 50rpx;
+  margin-left: 20rpx;
+}
+.update-btn:active{
+  background: #d8a23f;
+  font-size: 26rpx;
+  padding: 6rpx 20rpx;
+  color: white;
+  border-radius: 50rpx;
+  margin-left: 20rpx;
+}
+
 .head_img{
   width: 120rpx;
   height: 120rpx;

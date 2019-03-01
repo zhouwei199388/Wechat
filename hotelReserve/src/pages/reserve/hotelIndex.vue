@@ -1,21 +1,21 @@
 <template>
   <view class='root'>
-    <!--<swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">-->
-      <!--<repeat for="{{movies}}" key="{{this}}">-->
-        <!--<swiper-item>-->
-          <!--<image src="{{item.url}}" mode="aspectFill"/>-->
-        <!--</swiper-item>-->
-      <!--</repeat>-->
-    <!--</swiper>-->
-    <swiper class="bannerBox" autoplay="true" interval="3000" duration="500" previous-margin="50rpx" next-margin="50rpx" @change="bannerChange">
-      <repeat wx:for="{{movies}}" key="{{this}}">
+    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+      <repeat for="{{movies}}" key="{{this}}">
         <swiper-item>
-          <!--<div class="fix pl5 pr5 box_bb">-->
-              <image class="banner mt10" src="{{item.url}}" mode="aspectFill" />
-          <!--</div>-->
+          <image src="{{item.url}}" mode="aspectFill"/>
         </swiper-item>
       </repeat>
     </swiper>
+    <!--<swiper class="bannerBox" autoplay="true" interval="3000" duration="500" previous-margin="50rpx" next-margin="50rpx" @change="bannerChange">-->
+      <!--<repeat wx:for="{{movies}}" key="{{this}}">-->
+        <!--<swiper-item>-->
+          <!--&lt;!&ndash;<div class="fix pl5 pr5 box_bb">&ndash;&gt;-->
+              <!--<image class="banner mt10" src="{{item.url}}" mode="aspectFill" />-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</swiper-item>-->
+      <!--</repeat>-->
+    <!--</swiper>-->
     <view class="flex-column m-30 bg-default p-40" style="border-radius: 10rpx ">
        <view class="flex-row font-24 text-summary p-20" style="justify-content: space-around" @tap="toSelectDate">
          <text >入住日期</text>
@@ -45,9 +45,9 @@
       head_img_url:'../../images/img_head.jpg',
       movies: [
         { url: '../../images/img_head.jpg' },
-        { url: '../../images/img_head.jpg' },
-        { url: '../../images/img_head.jpg' },
-        { url: '../../images/img_head.jpg' }
+        { url: '../../images/ic_head_04.jpg' },
+        { url: '../../images/ic_head_02.jpg' },
+        { url: '../../images/ic_head_03.jpg' }
       ],
       showStartTime:"--月--日",
       showEndTime:"--月--日",
