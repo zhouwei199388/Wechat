@@ -97,10 +97,18 @@
       }
     }
     wxRefund(orderId){
+      let date = new Date();
+      let hours = date.getHours();
+      console.log(hours);
+      let minutes = date.getMinutes();
+      if(hours>5&&minutes>0){
+         app.showToast("六点后不支持取消");
+         return;
+      }
       const requestHandle = {
         url: app.globalData.host + "order/wxRefund?orderId="+orderId,
       };
-     httpUtil.get(requestHandle)
+     httpUtil.get(requestHandle,"取消中")
        .then(res=>{
          this.getOrders();
          app.showToast("退款成功");
